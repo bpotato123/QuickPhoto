@@ -1,303 +1,604 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>證件照 - 您的隨身證件照製作專家</title>
+<title>QuickCut - AI 快速修圖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;
 }
 
 body{
+
+    font-family:'Noto Sans TC',sans-serif;
     background:#f5f7fb;
     color:#333;
     line-height:1.8;
 }
 
 header{
-    background:linear-gradient(135deg,#3b82f6,#2563eb);
-    color:white;
-    text-align:center;
-    padding:70px 20px;
+
+background:linear-gradient(135deg,#5A7BFF,#46D4FF);
+
+padding:90px 20px;
+text-align:center;
+color:white;
+
 }
 
 header h1{
-    font-size:42px;
-    margin-bottom:15px;
+
+font-size:60px;
+font-weight:900;
+margin-bottom:20px;
+
 }
 
 header p{
-    font-size:20px;
-    opacity:.95;
+
+font-size:22px;
+opacity:.95;
+margin-bottom:40px;
+
 }
 
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:auto;
+.btn{
+
+display:inline-block;
+
+padding:16px 40px;
+
+background:white;
+
+color:#4A6BFF;
+
+border-radius:50px;
+
+font-size:18px;
+
+font-weight:bold;
+
+text-decoration:none;
+
+transition:.3s;
+
 }
 
-.section{
-    padding:60px 0;
+.btn:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+
 }
 
-.section-title{
-    text-align:center;
-    font-size:34px;
-    color:#2563eb;
-    margin-bottom:40px;
+section{
+
+max-width:1200px;
+
+margin:auto;
+
+padding:80px 20px;
+
+}
+
+h2{
+
+text-align:center;
+
+font-size:42px;
+
+margin-bottom:60px;
+
+color:#304FFE;
+
 }
 
 .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
 }
 
 .card{
-    background:white;
-    border-radius:18px;
-    padding:28px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.3s;
+
+background:white;
+
+border-radius:20px;
+
+padding:35px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+transition:.3s;
+
 }
 
 .card:hover{
-    transform:translateY(-8px);
+
+transform:translateY(-10px);
+
 }
 
 .card h3{
-    color:#2563eb;
-    margin-bottom:12px;
-    font-size:22px;
+
+margin-bottom:15px;
+
+font-size:24px;
+
+color:#4A6BFF;
+
 }
 
-.card p{
-    color:#555;
+.flow{
+
+display:flex;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:20px;
+
 }
 
-.spec{
-    background:white;
-    border-radius:18px;
-    padding:35px;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+.step{
+
+flex:1;
+
+min-width:220px;
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
 }
 
-.spec ul{
-    margin-top:20px;
-    padding-left:25px;
+.step .num{
+
+width:60px;
+
+height:60px;
+
+margin:auto;
+
+border-radius:50%;
+
+background:#4A6BFF;
+
+color:white;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:28px;
+
+font-weight:bold;
+
+margin-bottom:20px;
+
 }
 
-.spec li{
-    margin:10px 0;
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+background:white;
+
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+border-radius:15px;
+
+overflow:hidden;
+
+}
+
+th{
+
+background:#4A6BFF;
+
+color:white;
+
+padding:18px;
+
+}
+
+td{
+
+padding:18px;
+
+text-align:center;
+
+border-bottom:1px solid #eee;
+
+}
+
+.faq{
+
+margin-bottom:25px;
+
+background:white;
+
+padding:25px;
+
+border-radius:15px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
 }
 
 .cta{
-    text-align:center;
-    padding:70px 20px;
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
-    color:white;
-}
 
-.cta h2{
-    font-size:36px;
-    margin-bottom:20px;
-}
+background:linear-gradient(135deg,#4A6BFF,#38C8FF);
 
-.cta p{
-    font-size:20px;
-    margin-bottom:30px;
-}
+padding:90px 20px;
 
-.button{
-    display:inline-block;
-    background:white;
-    color:#2563eb;
-    text-decoration:none;
-    padding:16px 36px;
-    border-radius:40px;
-    font-size:18px;
-    font-weight:bold;
+text-align:center;
+
+color:white;
+
 }
 
 footer{
-    text-align:center;
-    padding:25px;
-    background:#1f2937;
-    color:#ccc;
+
+padding:40px;
+
+text-align:center;
+
+color:#888;
+
+font-size:14px;
+
 }
 
 @media(max-width:768px){
 
 header h1{
-    font-size:32px;
-}
 
-.section-title{
-    font-size:28px;
-}
+font-size:42px;
 
 }
+
+header p{
+
+font-size:18px;
+
+}
+
+h2{
+
+font-size:32px;
+
+}
+
+}
+
 </style>
 
 </head>
-
 <body>
 
 <header>
 
-<h1>📸 證件照</h1>
+<h1>✂ QuickCut</h1>
 
-<p>您的隨身證件照製作專家</p>
+<p>AI 快速修圖・批次去背・一鍵美化圖片</p>
 
-<br>
-
-<p>
-無論是身分證、護照、駕照、學生證、簽證、台胞證等各種證件，
-只需幾個步驟，即可快速製作符合規格的專業證件照。
-</p>
+<a class="btn" href="#">立即開始</a>
 
 </header>
 
-<div class="container">
+<section>
 
-<section class="section">
+<h2>🚀 APP介紹</h2>
 
-<h2 class="section-title">
-✨ 主要功能
-</h2>
+<div class="card">
+
+<p>
+
+QuickCut 是一款專為電商、美工、設計師、自媒體及一般使用者打造的 AI 快速修圖工具。
+
+透過最新 AI 技術，只需要上傳圖片，即可自動完成去背、修圖、美化、裁切及批次處理，大幅節省修圖時間。
+
+不需要 Photoshop，也不用任何修圖經驗，即可快速完成高品質圖片。
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>✨ 核心功能</h2>
 
 <div class="grid">
 
 <div class="card">
-<h3>🤖 AI 智慧去背</h3>
+
+<h3>📤 圖片上傳</h3>
+
 <p>
-AI 自動辨識人物背景，一鍵完成去背，可快速更換背景顏色。
+
+支援拖曳上傳、多張圖片上傳、批次上傳。
+
 </p>
+
 </div>
 
 <div class="card">
-<h3>🎨 12 種背景</h3>
+
+<h3>🎯 AI 去背</h3>
+
 <p>
-提供 6 種素色與 6 種漸層背景，
-可依不同證件需求快速切換。
+
+自動辨識人物、商品、寵物、物件，一鍵完成高品質去背。
+
 </p>
+
 </div>
 
 <div class="card">
-<h3>✂️ 精準裁剪</h3>
+
+<h3>🖌 AI 修圖</h3>
+
 <p>
-支援縮放、旋轉、平移，
-自由調整頭部比例，符合官方規格。
+
+去除瑕疵、背景清理、色彩增強、亮度調整、自動美化。
+
 </p>
+
 </div>
 
 <div class="card">
-<h3>💄 AI 美顏</h3>
+
+<h3>⚡ 批次處理</h3>
+
 <p>
-自然潤膚、美肌與彩妝調整，
-打造自然又專業的證件照。
+
+一次處理數百張圖片，大幅提高工作效率。
+
 </p>
+
 </div>
 
 <div class="card">
-<h3>☀️ 光影調整</h3>
+
+<h3>📦 多格式下載</h3>
+
 <p>
-亮度、對比、色彩自由調整，
-讓照片更加清晰自然。
+
+支援 PNG、JPG、WebP 高品質下載。
+
 </p>
+
 </div>
 
 <div class="card">
-<h3>🖨️ 一鍵排版</h3>
-<p>
-自動產生 4×2 排版，
-一次輸出 8 張標準證件照，
-方便直接沖洗列印。
-</p>
-</div>
 
-<div class="card">
-<h3>💾 快速儲存</h3>
-<p>
-可儲存電子證件照，
-也可輸出完整列印版，
-方便分享與列印。
-</p>
-</div>
+<h3>☁ 雲端運算</h3>
 
-<div class="card">
-<h3>⚡ 操作簡單</h3>
 <p>
-幾分鐘即可完成整張證件照，
-免出門、免排隊，在家即可完成。
+
+免安裝大型軟體，開啟即可使用。
+
 </p>
+
 </div>
 
 </div>
 
 </section>
 
-<section class="section">
+<section>
 
-<h2 class="section-title">
-📋 支援證件規格
-</h2>
+<h2>📋 操作流程</h2>
 
-<div class="spec">
+<div class="flow">
 
-<ul>
+<div class="step">
 
-<li>🇹🇼 中華民國身分證</li>
+<div class="num">1</div>
 
-<li>🛂 中華民國護照</li>
+<h3>上傳圖片</h3>
 
-<li>🚗 汽機車駕照</li>
+<p>拖曳或批次選取圖片。</p>
 
-<li>💳 健保卡</li>
+</div>
 
-<li>🎓 學生證</li>
+<div class="step">
 
-<li>🛃 簽證照片</li>
+<div class="num">2</div>
 
-<li>🪪 台胞證</li>
+<h3>AI 自動修圖</h3>
 
-<li>🌍 更多國際證件照規格持續新增中...</li>
+<p>系統自動去背與優化圖片。</p>
 
-</ul>
+</div>
+
+<div class="step">
+
+<div class="num">3</div>
+
+<h3>下載成果</h3>
+
+<p>高畫質快速下載完成。</p>
+
+</div>
 
 </div>
 
 </section>
 
+<section>
+
+<h2>👥 適合哪些人？</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>🛍 電商賣家</h3>
+<p>快速完成商品去背與商品圖製作。</p>
 </div>
+
+<div class="card">
+<h3>📱 社群經營者</h3>
+<p>快速製作 Facebook、Instagram、Threads 圖片。</p>
+</div>
+
+<div class="card">
+<h3>🎨 設計師</h3>
+<p>節省大量重複修圖時間。</p>
+</div>
+
+<div class="card">
+<h3>📸 攝影師</h3>
+<p>大量照片快速批次修圖。</p>
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>📊 功能比較</h2>
+
+<table>
+
+<tr>
+
+<th>功能</th>
+
+<th>QuickCut</th>
+
+<th>傳統修圖</th>
+
+</tr>
+
+<tr>
+
+<td>AI 去背</td>
+
+<td>✅</td>
+
+<td>❌</td>
+
+</tr>
+
+<tr>
+
+<td>批次修圖</td>
+
+<td>✅</td>
+
+<td>❌</td>
+
+</tr>
+
+<tr>
+
+<td>快速完成</td>
+
+<td>數秒</td>
+
+<td>數分鐘~數小時</td>
+
+</tr>
+
+<tr>
+
+<td>免安裝</td>
+
+<td>✅</td>
+
+<td>需安裝</td>
+
+</tr>
+
+<tr>
+
+<td>操作難度</td>
+
+<td>⭐⭐⭐⭐⭐ 簡單</td>
+
+<td>⭐⭐ 困難</td>
+
+</tr>
+
+</table>
+
+</section>
+
+<section>
+
+<h2>❓ FAQ</h2>
+
+<div class="faq">
+
+<h3>需要會 Photoshop 嗎？</h3>
+
+<p>完全不需要，AI 自動完成修圖。</p>
+
+</div>
+
+<div class="faq">
+
+<h3>可以一次上傳很多圖片嗎？</h3>
+
+<p>可以，支援批次上傳及批次下載。</p>
+
+</div>
+
+<div class="faq">
+
+<h3>支援哪些圖片格式？</h3>
+
+<p>JPG、PNG、WebP 等常見格式。</p>
+
+</div>
+
+</section>
 
 <section class="cta">
 
-<h2>
-立即開始製作您的專業證件照
-</h2>
+<h2 style="color:white;">立即體驗 AI 快速修圖</h2>
 
-<p>
-AI 智慧去背、美顏、排版、列印，一站完成。
-<br>
-讓您輕鬆擁有符合官方規格的高品質證件照。
+<p style="font-size:22px;margin:30px 0;">
+
+幾秒鐘完成去背、修圖、美化，大量圖片一次搞定！
+
 </p>
 
-<a href="#" class="button">
-立即下載 APP
-</a>
+<a class="btn" href="#">免費開始使用</a>
 
 </section>
 
 <footer>
 
-© 2026 證件照 APP All Rights Reserved.
+© 2026 QuickCut AI Image Editor
 
 </footer>
 
