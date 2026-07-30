@@ -3,278 +3,572 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickPhoto 隱私權政策 (Privacy Policy)</title>
-
+<title data-i18n="meta_title">QuickCut 隱私權政策</title>
+<meta name="description" data-i18n-content="meta_desc" content="QuickCut 隱私權政策">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;
-    background:#f5f7fa;
-    margin:0;
-    color:#333;
-    line-height:1.8;
+:root{
+  --brand:#4A6BFF;
+  --brand-dark:#304FFE;
+  --bg:#f5f7fb;
+  --card:#fff;
+  --text:#2b3245;
+  --text-mid:#667085;
+  --border:#e6eaf2;
+  --ok:#12b76a;
+  --warn:#f79009;
 }
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter','Noto Sans TC','Noto Sans JP','Noto Sans KR',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--brand)}
+
+/* Nav */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:900px;margin:auto;padding:13px 20px;
+  display:flex;align-items:center;gap:14px;
+}
+.logo{
+  font-weight:700;font-size:18px;color:var(--brand-dark);
+  display:flex;align-items:center;gap:8px;text-decoration:none;
+}
+.logo-mark{
+  width:30px;height:30px;border-radius:8px;
+  background:linear-gradient(135deg,#5A7BFF,#46D4FF);
+  display:grid;place-items:center;color:#fff;font-size:15px;
+}
+.lang-wrap{position:relative;margin-left:auto}
+.lang-btn{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 13px;border-radius:999px;
+  border:1px solid var(--border);background:#fff;
+  font-size:13px;font-weight:600;color:var(--text);
+  cursor:pointer;transition:.2s;font-family:inherit;
+}
+.lang-btn:hover{border-color:var(--brand);color:var(--brand)}
+.lang-menu{
+  position:absolute;right:0;top:calc(100% + 8px);
+  background:#fff;border:1px solid var(--border);
+  border-radius:14px;box-shadow:0 18px 44px rgba(30,50,120,.16);
+  padding:6px;min-width:172px;
+  opacity:0;visibility:hidden;transform:translateY(-6px);transition:.18s;
+}
+.lang-menu.open{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-menu button{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:10px 13px;border:none;background:none;
+  border-radius:9px;font-size:14px;color:var(--text);
+  cursor:pointer;text-align:left;font-family:inherit;transition:.15s;
+}
+.lang-menu button:hover{background:#f1f4fb}
+.lang-menu button[aria-selected="true"]{color:var(--brand);font-weight:700}
+.lang-menu button[aria-selected="true"]::after{content:"✓"}
+
+/* Content */
 .container{
-    max-width:900px;
-    margin:40px auto;
-    background:#fff;
-    padding:50px;
-    border-radius:15px;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+  max-width:900px;margin:36px auto 60px;background:var(--card);
+  padding:clamp(28px,5vw,54px);border-radius:18px;
+  box-shadow:0 12px 34px rgba(30,50,120,.08);
+  border:1px solid var(--border);
 }
 h1{
-    color:#2563eb;
-    text-align:center;
+  font-size:clamp(26px,4.4vw,34px);font-weight:700;
+  color:var(--brand-dark);text-align:center;margin-bottom:10px;
 }
+.updated{text-align:center;color:var(--text-mid);font-size:14px;margin-bottom:30px}
 h2{
-    color:#1d4ed8;
-    margin-top:35px;
+  font-size:clamp(18px,2.6vw,21px);font-weight:700;
+  color:var(--brand-dark);margin:38px 0 12px;
+  padding-bottom:9px;border-bottom:2px solid #eef1f8;
 }
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:15px;
+p{margin-bottom:13px;color:#3d4457}
+ul{margin:0 0 14px 22px}
+li{margin-bottom:7px;color:#3d4457}
+
+/* Highlight box */
+.highlight{
+  background:linear-gradient(135deg,rgba(18,183,106,.09),rgba(74,107,255,.07));
+  border:1px solid rgba(18,183,106,.28);
+  border-left:4px solid var(--ok);
+  border-radius:12px;padding:20px 22px;margin:22px 0;
 }
-th,td{
-    border:1px solid #ddd;
-    padding:12px;
+.highlight strong{color:#067647;display:block;margin-bottom:6px;font-size:16px}
+.note{
+  background:#fffaf0;border:1px solid #fde9c4;border-left:4px solid var(--warn);
+  border-radius:12px;padding:18px 20px;margin:20px 0;font-size:15px;
 }
+
+.table-wrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);margin:14px 0 20px}
+table{width:100%;border-collapse:collapse;min-width:480px;background:#fff}
 th{
-    background:#2563eb;
-    color:#fff;
+  background:var(--brand);color:#fff;padding:14px 15px;
+  text-align:left;font-weight:600;font-size:14.5px;
 }
+td{padding:13px 15px;border-bottom:1px solid var(--border);font-size:14.5px;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:#fafbff}
+
+.contact-box{
+  background:#f6f8ff;border:1px solid #dde5fb;border-radius:12px;
+  padding:20px 22px;margin-top:14px;
+}
+.contact-box a{font-weight:600}
+
 footer{
-    margin-top:40px;
-    text-align:center;
-    color:#888;
+  text-align:center;color:var(--text-mid);font-size:13.5px;
+  padding:0 20px 44px;
 }
+footer a{margin:0 9px}
+@media(max-width:640px){ .container{margin:20px 14px 44px;border-radius:14px} }
 </style>
 </head>
-
 <body>
 
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><span class="logo-mark">✂</span>QuickCut</a>
+    <div class="lang-wrap">
+      <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+        🌐 <span id="langLabel">繁體中文</span> ▾
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu"></div>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
-
-<h1>QuickPhoto 隱私權政策</h1>
-
-<p>
-最後更新日期：2026 年 7 月 6 日
-</p>
-
-<p>
-歡迎您使用 <strong>QuickPhoto</strong>（以下稱「本 App」）。
-我們重視您的個人資料及隱私權，並依照相關法令保護您的資料安全。
-當您使用本 App 時，即表示您同意本隱私權政策。
-</p>
-
-<h2>一、我們蒐集哪些資料</h2>
-
-<table>
-
-<tr>
-<th>資料類型</th>
-<th>用途</th>
-</tr>
-
-<tr>
-<td>您選擇上傳的圖片</td>
-<td>提供 AI 去背、修圖、美化及圖片處理服務</td>
-</tr>
-
-<tr>
-<td>裝置資訊（型號、作業系統版本）</td>
-<td>改善相容性與服務品質</td>
-</tr>
-
-<tr>
-<td>錯誤紀錄（Crash Log）</td>
-<td>修正程式錯誤</td>
-</tr>
-
-<tr>
-<td>使用紀錄</td>
-<td>分析功能使用狀況並改善產品體驗</td>
-</tr>
-
-</table>
-
-<h2>二、圖片資料使用方式</h2>
-
-<p>
-
-您所上傳的圖片僅用於：
-
-</p>
-
-<ul>
-
-<li>AI 去背</li>
-
-<li>AI 修圖</li>
-
-<li>圖片增強</li>
-
-<li>批次圖片處理</li>
-
-</ul>
-
-<p>
-
-除非取得您的同意或依法令要求，
-我們不會販售、分享或提供您的圖片給第三方。
-
-</p>
-
-<h2>三、資料保存</h2>
-
-<p>
-
-若圖片需要上傳至雲端伺服器進行 AI 處理，
-圖片僅於完成修圖期間暫時保存。
-
-圖片完成處理後，系統將依服務需求自動刪除或定期清除。
-
-</p>
-
-<h2>四、權限說明</h2>
-
-<table>
-
-<tr>
-
-<th>權限</th>
-
-<th>用途</th>
-
-</tr>
-
-<tr>
-
-<td>相簿 / 儲存空間</td>
-
-<td>選取圖片及儲存修圖結果</td>
-
-</tr>
-
-<tr>
-
-<td>相機（若使用）</td>
-
-<td>直接拍攝照片進行修圖</td>
-
-</tr>
-
-<tr>
-
-<td>網路存取</td>
-
-<td>AI 圖片處理及同步服務</td>
-
-</tr>
-
-</table>
-
-<h2>五、第三方服務</h2>
-
-<p>
-
-本 App 可能使用第三方服務，例如：
-
-</p>
-
-<ul>
-
-<li>Google Firebase Analytics</li>
-
-<li>Firebase Crashlytics</li>
-
-<li>Google Play Services</li>
-
-<li>Apple App Store Services</li>
-
-</ul>
-
-<p>
-
-上述服務可能依其隱私權政策蒐集必要資訊。
-
-</p>
-
-<h2>六、資料安全</h2>
-
-<p>
-
-我們採取合理的技術及管理措施，
-避免您的資料遭到未經授權存取、
-修改、揭露或遺失。
-
-</p>
-
-<h2>七、兒童隱私</h2>
-
-<p>
-
-本 App 並非專門提供 13 歲以下兒童使用。
-
-若發現誤蒐集兒童資料，
-我們將盡快刪除相關資訊。
-
-</p>
-
-<h2>八、您的權利</h2>
-
-<p>
-
-您可以依法要求：
-
-</p>
-
-<ul>
-
-<li>查詢個人資料</li>
-
-<li>更正資料</li>
-
-<li>刪除資料</li>
-
-<li>停止使用資料</li>
-
-</ul>
-
-<h2>九、隱私權政策更新</h2>
-
-<p>
-
-本政策可能因法令或服務內容調整而更新。
-
-更新後將公布於本頁面。
-
-</p>
-
-<h2>十、聯絡我們</h2>
-
-<p>
-
-若您對本政策有任何疑問，
-
-請透過以下方式聯絡我們：
-
-</p>
-
-<p>
-
-電子郵件：bpotato1230@gmail.com
-
-</p>
-
-<footer>
-
-© 2026 QuickPhoto<br>
-
-Privacy Policy
-
-</footer>
-
+  <h1 data-i18n="title">QuickCut 隱私權政策</h1>
+  <p class="updated"><span data-i18n="updated_label">最後更新日期</span>：<span data-i18n="updated_date">2026 年 7 月 30 日</span></p>
+
+  <p data-i18n="intro">歡迎使用 QuickCut（以下稱「本應用程式」）。我們重視您的個人資料與隱私權，並依相關法令保護您的資料安全。當您使用本應用程式時，即表示您同意本隱私權政策。</p>
+
+  <div class="highlight">
+    <strong data-i18n="hl_title">🔒 您的照片不會離開您的裝置</strong>
+    <span data-i18n="hl_body">QuickCut 的所有影像處理（AI 去背、變清晰、消除筆、調尺寸）皆在您的裝置上本機完成。我們不會將您的照片上傳到任何伺服器，也不會傳送給任何第三方。</span>
+  </div>
+
+  <h2 data-i18n="s1_title">一、我們蒐集哪些資料</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th data-i18n="th_type">資料類型</th><th data-i18n="th_use">用途</th><th data-i18n="th_where">處理位置</th></tr></thead>
+      <tbody>
+        <tr><td data-i18n="r1a">您選取的照片</td><td data-i18n="r1b">提供 AI 去背、變清晰、消除筆、調尺寸等編輯功能</td><td data-i18n="r1c">僅在裝置本機</td></tr>
+        <tr><td data-i18n="r2a">廣告識別碼（Advertising ID）</td><td data-i18n="r2b">由 Google AdMob 用於顯示廣告與衡量成效</td><td data-i18n="r2c">Google 伺服器</td></tr>
+        <tr><td data-i18n="r3a">購買紀錄</td><td data-i18n="r3b">驗證 Pro 版購買狀態、恢復購買</td><td data-i18n="r3c">Google Play 服務</td></tr>
+        <tr><td data-i18n="r4a">應用程式偏好設定</td><td data-i18n="r4b">記住語言選擇、試用期起始時間</td><td data-i18n="r4c">僅在裝置本機</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 data-i18n="s2_title">二、照片與影像資料</h2>
+  <p data-i18n="s2_p1">您在本應用程式中選取的照片，僅用於您主動觸發的編輯功能：</p>
+  <ul>
+    <li data-i18n="s2_l1">AI 去背景</li>
+    <li data-i18n="s2_l2">AI 變清晰（畫質增強）</li>
+    <li data-i18n="s2_l3">消除筆 / 恢復筆</li>
+    <li data-i18n="s2_l4">調整尺寸與裁切</li>
+    <li data-i18n="s2_l5">批次處理</li>
+  </ul>
+  <p data-i18n="s2_p2">上述處理全部在您的裝置上完成，不需要網路連線。我們無法存取、瀏覽、儲存或分享您的照片。編輯結果只有在您主動點選「儲存」時，才會寫入您裝置的相簿。</p>
+
+  <h2 data-i18n="s3_title">三、廣告</h2>
+  <p data-i18n="s3_p1">本應用程式的免費版本會顯示由 Google AdMob 提供的廣告。AdMob 可能會蒐集並使用您裝置的廣告識別碼、概略位置、以及廣告互動紀錄，以提供個人化廣告並衡量成效。</p>
+  <p data-i18n="s3_p2">您可以在裝置的「設定 → Google → 廣告」中重設或刪除廣告識別碼，亦可選擇退出個人化廣告。</p>
+  <p><span data-i18n="s3_p3">如需瞭解 Google 如何使用資料，請參閱：</span><a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Google 隱私權與條款</a></p>
+  <div class="note" data-i18n="s3_note">升級為 Pro 版或在試用期間，本應用程式不會顯示任何廣告。</div>
+
+  <h2 data-i18n="s4_title">四、購買與付款</h2>
+  <p data-i18n="s4_p1">Pro 版的購買透過 Google Play 帳款服務處理。我們不會蒐集、儲存或存取您的信用卡號碼或任何付款資訊，所有交易均由 Google Play 直接處理。</p>
+  <p data-i18n="s4_p2">本應用程式僅在您的裝置本機儲存「是否已購買」的狀態，用於解鎖 Pro 功能。</p>
+
+  <h2 data-i18n="s5_title">五、權限說明</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th data-i18n="th_perm">權限</th><th data-i18n="th_use">用途</th><th data-i18n="th_req">是否必要</th></tr></thead>
+      <tbody>
+        <tr><td data-i18n="p1a">照片與媒體</td><td data-i18n="p1b">讓您選取要編輯的照片，以及將編輯結果儲存至相簿</td><td data-i18n="p1c">必要</td></tr>
+        <tr><td data-i18n="p2a">網路連線</td><td data-i18n="p2b">顯示廣告、驗證購買狀態</td><td data-i18n="p2c">選用</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p data-i18n="s5_p1">本應用程式不會存取您的通訊錄、簡訊、通話紀錄、麥克風或精確位置。</p>
+
+  <h2 data-i18n="s6_title">六、第三方服務</h2>
+  <p data-i18n="s6_p1">本應用程式使用下列第三方服務：</p>
+  <ul>
+    <li data-i18n="s6_l1"><strong>Google AdMob</strong> — 廣告投放</li>
+    <li data-i18n="s6_l2"><strong>Google Play 帳款服務</strong> — 應用程式內購買</li>
+    <li data-i18n="s6_l3"><strong>Google Play 服務</strong> — 基礎功能支援</li>
+  </ul>
+  <p data-i18n="s6_p2">上述服務各有其隱私權政策，建議您一併參閱。</p>
+
+  <h2 data-i18n="s7_title">七、資料保存</h2>
+  <p data-i18n="s7_p1">由於影像處理全部在裝置本機完成，我們的伺服器不會保存任何您的照片。應用程式偏好設定（語言、試用期、購買狀態）儲存於您的裝置，並會在您解除安裝本應用程式時一併刪除。</p>
+
+  <h2 data-i18n="s8_title">八、資料安全</h2>
+  <p data-i18n="s8_p1">我們採取合理的技術與管理措施保護資料安全。由於照片處理不經過網路傳輸，您的影像資料本質上不會遭到傳輸過程的攔截風險。</p>
+
+  <h2 data-i18n="s9_title">九、兒童隱私</h2>
+  <p data-i18n="s9_p1">本應用程式並非以 13 歲以下兒童為對象，我們不會有意蒐集兒童的個人資料。若您發現有兒童資料被誤蒐集，請聯絡我們，我們將盡快刪除。</p>
+
+  <h2 data-i18n="s10_title">十、您的權利</h2>
+  <p data-i18n="s10_p1">您可以隨時：</p>
+  <ul>
+    <li data-i18n="s10_l1">在裝置設定中撤銷本應用程式的照片存取權限</li>
+    <li data-i18n="s10_l2">重設或刪除廣告識別碼、退出個人化廣告</li>
+    <li data-i18n="s10_l3">解除安裝本應用程式以刪除所有本機資料</li>
+    <li data-i18n="s10_l4">來信要求查詢、更正或刪除您的個人資料</li>
+  </ul>
+
+  <h2 data-i18n="s11_title">十一、政策更新</h2>
+  <p data-i18n="s11_p1">本政策可能因法令變更或服務內容調整而更新。更新後將公布於本頁面，並更新頁面上方的「最後更新日期」。</p>
+
+  <h2 data-i18n="s12_title">十二、聯絡我們</h2>
+  <p data-i18n="s12_p1">若您對本隱私權政策有任何疑問，歡迎透過以下方式與我們聯絡：</p>
+  <div class="contact-box">
+    <span data-i18n="s12_email">電子郵件</span>：<a href="mailto:bpotato1230@gmail.com">bpotato1230@gmail.com</a>
+  </div>
 </div>
 
+<footer>
+  <div style="margin-bottom:8px">
+    <a href="index.html" data-i18n="foot_home">回首頁</a>
+    <a href="mailto:bpotato1230@gmail.com" data-i18n="foot_contact">聯絡我們</a>
+  </div>
+  © 2026 QuickCut
+</footer>
+
+<script>
+const LANGS = {
+"zh-TW":{name:"繁體中文",
+meta_title:"QuickCut 隱私權政策",meta_desc:"QuickCut 隱私權政策",
+title:"QuickCut 隱私權政策",updated_label:"最後更新日期",updated_date:"2026 年 7 月 30 日",
+intro:"歡迎使用 QuickCut（以下稱「本應用程式」）。我們重視您的個人資料與隱私權，並依相關法令保護您的資料安全。當您使用本應用程式時，即表示您同意本隱私權政策。",
+hl_title:"🔒 您的照片不會離開您的裝置",
+hl_body:"QuickCut 的所有影像處理（AI 去背、變清晰、消除筆、調尺寸）皆在您的裝置上本機完成。我們不會將您的照片上傳到任何伺服器，也不會傳送給任何第三方。",
+s1_title:"一、我們蒐集哪些資料",th_type:"資料類型",th_use:"用途",th_where:"處理位置",th_perm:"權限",th_req:"是否必要",
+r1a:"您選取的照片",r1b:"提供 AI 去背、變清晰、消除筆、調尺寸等編輯功能",r1c:"僅在裝置本機",
+r2a:"廣告識別碼（Advertising ID）",r2b:"由 Google AdMob 用於顯示廣告與衡量成效",r2c:"Google 伺服器",
+r3a:"購買紀錄",r3b:"驗證 Pro 版購買狀態、恢復購買",r3c:"Google Play 服務",
+r4a:"應用程式偏好設定",r4b:"記住語言選擇、試用期起始時間",r4c:"僅在裝置本機",
+s2_title:"二、照片與影像資料",s2_p1:"您在本應用程式中選取的照片，僅用於您主動觸發的編輯功能：",
+s2_l1:"AI 去背景",s2_l2:"AI 變清晰（畫質增強）",s2_l3:"消除筆 / 恢復筆",s2_l4:"調整尺寸與裁切",s2_l5:"批次處理",
+s2_p2:"上述處理全部在您的裝置上完成，不需要網路連線。我們無法存取、瀏覽、儲存或分享您的照片。編輯結果只有在您主動點選「儲存」時，才會寫入您裝置的相簿。",
+s3_title:"三、廣告",
+s3_p1:"本應用程式的免費版本會顯示由 Google AdMob 提供的廣告。AdMob 可能會蒐集並使用您裝置的廣告識別碼、概略位置、以及廣告互動紀錄，以提供個人化廣告並衡量成效。",
+s3_p2:"您可以在裝置的「設定 → Google → 廣告」中重設或刪除廣告識別碼，亦可選擇退出個人化廣告。",
+s3_p3:"如需瞭解 Google 如何使用資料，請參閱：",
+s3_note:"升級為 Pro 版或在試用期間，本應用程式不會顯示任何廣告。",
+s4_title:"四、購買與付款",
+s4_p1:"Pro 版的購買透過 Google Play 帳款服務處理。我們不會蒐集、儲存或存取您的信用卡號碼或任何付款資訊，所有交易均由 Google Play 直接處理。",
+s4_p2:"本應用程式僅在您的裝置本機儲存「是否已購買」的狀態，用於解鎖 Pro 功能。",
+s5_title:"五、權限說明",
+p1a:"照片與媒體",p1b:"讓您選取要編輯的照片，以及將編輯結果儲存至相簿",p1c:"必要",
+p2a:"網路連線",p2b:"顯示廣告、驗證購買狀態",p2c:"選用",
+s5_p1:"本應用程式不會存取您的通訊錄、簡訊、通話紀錄、麥克風或精確位置。",
+s6_title:"六、第三方服務",s6_p1:"本應用程式使用下列第三方服務：",
+s6_l1:"Google AdMob — 廣告投放",s6_l2:"Google Play 帳款服務 — 應用程式內購買",s6_l3:"Google Play 服務 — 基礎功能支援",
+s6_p2:"上述服務各有其隱私權政策，建議您一併參閱。",
+s7_title:"七、資料保存",
+s7_p1:"由於影像處理全部在裝置本機完成，我們的伺服器不會保存任何您的照片。應用程式偏好設定（語言、試用期、購買狀態）儲存於您的裝置，並會在您解除安裝本應用程式時一併刪除。",
+s8_title:"八、資料安全",
+s8_p1:"我們採取合理的技術與管理措施保護資料安全。由於照片處理不經過網路傳輸，您的影像資料本質上不會遭到傳輸過程的攔截風險。",
+s9_title:"九、兒童隱私",
+s9_p1:"本應用程式並非以 13 歲以下兒童為對象，我們不會有意蒐集兒童的個人資料。若您發現有兒童資料被誤蒐集，請聯絡我們，我們將盡快刪除。",
+s10_title:"十、您的權利",s10_p1:"您可以隨時：",
+s10_l1:"在裝置設定中撤銷本應用程式的照片存取權限",s10_l2:"重設或刪除廣告識別碼、退出個人化廣告",
+s10_l3:"解除安裝本應用程式以刪除所有本機資料",s10_l4:"來信要求查詢、更正或刪除您的個人資料",
+s11_title:"十一、政策更新",
+s11_p1:"本政策可能因法令變更或服務內容調整而更新。更新後將公布於本頁面，並更新頁面上方的「最後更新日期」。",
+s12_title:"十二、聯絡我們",s12_p1:"若您對本隱私權政策有任何疑問，歡迎透過以下方式與我們聯絡：",s12_email:"電子郵件",
+foot_home:"回首頁",foot_contact:"聯絡我們"},
+
+"zh-CN":{name:"简体中文",
+meta_title:"QuickCut 隐私政策",meta_desc:"QuickCut 隐私政策",
+title:"QuickCut 隐私政策",updated_label:"最后更新日期",updated_date:"2026 年 7 月 30 日",
+intro:"欢迎使用 QuickCut（以下称「本应用」）。我们重视您的个人信息与隐私，并依据相关法律保护您的数据安全。当您使用本应用时，即表示您同意本隐私政策。",
+hl_title:"🔒 您的照片不会离开您的设备",
+hl_body:"QuickCut 的所有图像处理（AI 抠图、变清晰、消除笔、调尺寸）均在您的设备本地完成。我们不会将您的照片上传到任何服务器，也不会发送给任何第三方。",
+s1_title:"一、我们收集哪些信息",th_type:"数据类型",th_use:"用途",th_where:"处理位置",th_perm:"权限",th_req:"是否必需",
+r1a:"您选取的照片",r1b:"提供 AI 抠图、变清晰、消除笔、调尺寸等编辑功能",r1c:"仅在设备本地",
+r2a:"广告标识符（Advertising ID）",r2b:"由 Google AdMob 用于展示广告与衡量效果",r2c:"Google 服务器",
+r3a:"购买记录",r3b:"验证 Pro 版购买状态、恢复购买",r3c:"Google Play 服务",
+r4a:"应用偏好设置",r4b:"记住语言选择、试用期起始时间",r4c:"仅在设备本地",
+s2_title:"二、照片与图像数据",s2_p1:"您在本应用中选取的照片，仅用于您主动触发的编辑功能：",
+s2_l1:"AI 抠图",s2_l2:"AI 变清晰（画质增强）",s2_l3:"消除笔 / 恢复笔",s2_l4:"调整尺寸与裁剪",s2_l5:"批量处理",
+s2_p2:"上述处理全部在您的设备上完成，无需网络连接。我们无法访问、浏览、存储或分享您的照片。编辑结果只有在您主动点击「保存」时，才会写入您设备的相册。",
+s3_title:"三、广告",
+s3_p1:"本应用的免费版本会展示由 Google AdMob 提供的广告。AdMob 可能会收集并使用您设备的广告标识符、粗略位置以及广告互动记录，以提供个性化广告并衡量效果。",
+s3_p2:"您可以在设备的「设置 → Google → 广告」中重置或删除广告标识符，也可以选择退出个性化广告。",
+s3_p3:"如需了解 Google 如何使用数据，请参阅：",
+s3_note:"升级为 Pro 版或在试用期间，本应用不会展示任何广告。",
+s4_title:"四、购买与付款",
+s4_p1:"Pro 版的购买通过 Google Play 结算服务处理。我们不会收集、存储或访问您的信用卡号码或任何支付信息，所有交易均由 Google Play 直接处理。",
+s4_p2:"本应用仅在您的设备本地存储「是否已购买」的状态，用于解锁 Pro 功能。",
+s5_title:"五、权限说明",
+p1a:"照片与媒体",p1b:"让您选取要编辑的照片，以及将编辑结果保存到相册",p1c:"必需",
+p2a:"网络连接",p2b:"展示广告、验证购买状态",p2c:"可选",
+s5_p1:"本应用不会访问您的通讯录、短信、通话记录、麦克风或精确位置。",
+s6_title:"六、第三方服务",s6_p1:"本应用使用下列第三方服务：",
+s6_l1:"Google AdMob — 广告投放",s6_l2:"Google Play 结算服务 — 应用内购买",s6_l3:"Google Play 服务 — 基础功能支持",
+s6_p2:"上述服务各有其隐私政策，建议您一并参阅。",
+s7_title:"七、数据保存",
+s7_p1:"由于图像处理全部在设备本地完成，我们的服务器不会保存任何您的照片。应用偏好设置（语言、试用期、购买状态）存储于您的设备，并会在您卸载本应用时一并删除。",
+s8_title:"八、数据安全",
+s8_p1:"我们采取合理的技术与管理措施保护数据安全。由于照片处理不经过网络传输，您的图像数据本质上不会遭受传输过程的拦截风险。",
+s9_title:"九、儿童隐私",
+s9_p1:"本应用并非以 13 岁以下儿童为对象，我们不会有意收集儿童的个人信息。若您发现有儿童信息被误收集，请联系我们，我们将尽快删除。",
+s10_title:"十、您的权利",s10_p1:"您可以随时：",
+s10_l1:"在设备设置中撤销本应用的照片访问权限",s10_l2:"重置或删除广告标识符、退出个性化广告",
+s10_l3:"卸载本应用以删除所有本地数据",s10_l4:"来信要求查询、更正或删除您的个人信息",
+s11_title:"十一、政策更新",
+s11_p1:"本政策可能因法律变更或服务内容调整而更新。更新后将公布于本页面，并更新页面上方的「最后更新日期」。",
+s12_title:"十二、联系我们",s12_p1:"若您对本隐私政策有任何疑问，欢迎通过以下方式与我们联系：",s12_email:"电子邮件",
+foot_home:"回首页",foot_contact:"联系我们"},
+
+"en":{name:"English",
+meta_title:"QuickCut Privacy Policy",meta_desc:"QuickCut Privacy Policy",
+title:"QuickCut Privacy Policy",updated_label:"Last updated",updated_date:"July 30, 2026",
+intro:"Welcome to QuickCut (the \"App\"). We respect your personal data and privacy, and protect your information in accordance with applicable laws. By using the App, you agree to this Privacy Policy.",
+hl_title:"🔒 Your photos never leave your device",
+hl_body:"All image processing in QuickCut (AI background removal, enhancement, eraser, resize) runs locally on your device. We never upload your photos to any server, nor share them with any third party.",
+s1_title:"1. What data we collect",th_type:"Data type",th_use:"Purpose",th_where:"Processed where",th_perm:"Permission",th_req:"Required",
+r1a:"Photos you select",r1b:"To provide AI background removal, enhancement, eraser and resize features",r1c:"On-device only",
+r2a:"Advertising ID",r2b:"Used by Google AdMob to serve and measure ads",r2c:"Google servers",
+r3a:"Purchase records",r3b:"To verify Pro status and restore purchases",r3c:"Google Play services",
+r4a:"App preferences",r4b:"To remember your language choice and trial start date",r4c:"On-device only",
+s2_title:"2. Photos and image data",s2_p1:"Photos you select in the App are used solely for the editing features you actively trigger:",
+s2_l1:"AI background removal",s2_l2:"AI enhancement",s2_l3:"Eraser / Restore brush",s2_l4:"Resize and crop",s2_l5:"Batch processing",
+s2_p2:"All processing happens on your device and requires no internet connection. We cannot access, view, store or share your photos. Edited results are written to your device gallery only when you tap Save.",
+s3_title:"3. Advertising",
+s3_p1:"The free version of the App displays ads provided by Google AdMob. AdMob may collect and use your device's advertising ID, approximate location and ad interaction data to serve personalized ads and measure performance.",
+s3_p2:"You can reset or delete your advertising ID, or opt out of personalized ads, via Settings → Google → Ads on your device.",
+s3_p3:"To learn how Google uses data, see:",
+s3_note:"No ads are shown while you are on the Pro version or within the free trial period.",
+s4_title:"4. Purchases and payments",
+s4_p1:"Pro purchases are processed through Google Play Billing. We never collect, store or access your card number or any payment details — all transactions are handled directly by Google Play.",
+s4_p2:"The App only stores a local flag indicating whether a purchase has been made, in order to unlock Pro features.",
+s5_title:"5. Permissions",
+p1a:"Photos and media",p1b:"To let you select photos to edit and save results to your gallery",p1c:"Required",
+p2a:"Internet access",p2b:"To display ads and verify purchase status",p2c:"Optional",
+s5_p1:"The App does not access your contacts, SMS, call logs, microphone or precise location.",
+s6_title:"6. Third-party services",s6_p1:"The App uses the following third-party services:",
+s6_l1:"Google AdMob — advertising",s6_l2:"Google Play Billing — in-app purchases",s6_l3:"Google Play Services — core platform support",
+s6_p2:"Each service has its own privacy policy, which we encourage you to review.",
+s7_title:"7. Data retention",
+s7_p1:"Because all image processing happens on-device, our servers retain none of your photos. App preferences (language, trial period, purchase status) are stored on your device and removed when you uninstall the App.",
+s8_title:"8. Data security",
+s8_p1:"We apply reasonable technical and organizational measures to protect data. Since photo processing never travels over the network, your image data is inherently not exposed to interception in transit.",
+s9_title:"9. Children's privacy",
+s9_p1:"The App is not directed at children under 13, and we do not knowingly collect personal data from children. If you believe a child's data has been collected, please contact us and we will delete it promptly.",
+s10_title:"10. Your rights",s10_p1:"At any time you may:",
+s10_l1:"Revoke the App's photo access permission in device settings",s10_l2:"Reset or delete your advertising ID and opt out of personalized ads",
+s10_l3:"Uninstall the App to delete all local data",s10_l4:"Email us to request access, correction or deletion of your personal data",
+s11_title:"11. Policy updates",
+s11_p1:"This policy may be updated due to legal changes or service adjustments. Updates will be posted on this page along with a revised \"Last updated\" date.",
+s12_title:"12. Contact us",s12_p1:"If you have any questions about this Privacy Policy, please contact us:",s12_email:"Email",
+foot_home:"Home",foot_contact:"Contact"},
+
+"ja":{name:"日本語",
+meta_title:"QuickCut プライバシーポリシー",meta_desc:"QuickCut プライバシーポリシー",
+title:"QuickCut プライバシーポリシー",updated_label:"最終更新日",updated_date:"2026年7月30日",
+intro:"QuickCut（以下「本アプリ」）をご利用いただきありがとうございます。当社はお客様の個人情報とプライバシーを尊重し、関連法令に従って情報の安全を保護します。本アプリをご利用いただくことで、本ポリシーに同意したものとみなされます。",
+hl_title:"🔒 お客様の写真は端末から外に出ません",
+hl_body:"QuickCut のすべての画像処理（AI 背景削除、高画質化、消しゴム、サイズ調整）は、お客様の端末内で完結します。写真をサーバーへアップロードすることも、第三者へ提供することもありません。",
+s1_title:"1. 収集する情報",th_type:"データの種類",th_use:"利用目的",th_where:"処理場所",th_perm:"権限",th_req:"必須",
+r1a:"お客様が選択した写真",r1b:"AI 背景削除、高画質化、消しゴム、サイズ調整などの編集機能の提供",r1c:"端末内のみ",
+r2a:"広告 ID（Advertising ID）",r2b:"Google AdMob による広告配信および効果測定",r2c:"Google サーバー",
+r3a:"購入履歴",r3b:"Pro 版の購入状態の確認および購入の復元",r3c:"Google Play サービス",
+r4a:"アプリ設定",r4b:"言語設定、体験期間の開始日時の保存",r4c:"端末内のみ",
+s2_title:"2. 写真および画像データ",s2_p1:"本アプリで選択した写真は、お客様が能動的に実行した編集機能のみに使用されます：",
+s2_l1:"AI 背景削除",s2_l2:"AI 高画質化",s2_l3:"消しゴム／復元ブラシ",s2_l4:"サイズ調整・トリミング",s2_l5:"一括処理",
+s2_p2:"これらの処理はすべて端末内で完結し、インターネット接続を必要としません。当社がお客様の写真にアクセス、閲覧、保存、共有することはできません。編集結果は、お客様が「保存」を押した場合にのみ端末のギャラリーへ書き込まれます。",
+s3_title:"3. 広告について",
+s3_p1:"本アプリの無料版では Google AdMob による広告を表示します。AdMob は、パーソナライズ広告の配信と効果測定のため、端末の広告 ID、おおよその位置情報、広告の操作履歴を収集・利用する場合があります。",
+s3_p2:"広告 ID は端末の「設定 → Google → 広告」からリセット・削除でき、パーソナライズ広告をオプトアウトすることも可能です。",
+s3_p3:"Google によるデータの利用については以下をご参照ください：",
+s3_note:"Pro 版へのアップグレード後、または体験期間中は広告が一切表示されません。",
+s4_title:"4. 購入と決済",
+s4_p1:"Pro 版の購入は Google Play の課金サービスを通じて処理されます。当社がクレジットカード番号や決済情報を収集・保存・参照することは一切なく、すべての取引は Google Play が直接処理します。",
+s4_p2:"本アプリは Pro 機能の解除のため、「購入済みかどうか」の状態のみを端末内に保存します。",
+s5_title:"5. 権限について",
+p1a:"写真とメディア",p1b:"編集する写真の選択、および編集結果のギャラリーへの保存",p1c:"必須",
+p2a:"インターネット接続",p2b:"広告の表示、購入状態の確認",p2c:"任意",
+s5_p1:"本アプリが連絡先、SMS、通話履歴、マイク、正確な位置情報にアクセスすることはありません。",
+s6_title:"6. 第三者サービス",s6_p1:"本アプリは以下の第三者サービスを利用しています：",
+s6_l1:"Google AdMob — 広告配信",s6_l2:"Google Play 課金サービス — アプリ内購入",s6_l3:"Google Play サービス — 基盤機能のサポート",
+s6_p2:"各サービスにはそれぞれのプライバシーポリシーがありますので、あわせてご確認ください。",
+s7_title:"7. データの保存",
+s7_p1:"画像処理はすべて端末内で完結するため、当社のサーバーにお客様の写真が保存されることはありません。アプリ設定（言語、体験期間、購入状態）は端末内に保存され、アプリをアンインストールすると削除されます。",
+s8_title:"8. データの安全性",
+s8_p1:"当社はデータ保護のため合理的な技術的・組織的措置を講じています。写真処理がネットワークを経由しないため、通信途中で画像データが傍受されるリスクは本質的に存在しません。",
+s9_title:"9. お子様のプライバシー",
+s9_p1:"本アプリは 13 歳未満のお子様を対象としておらず、お子様の個人情報を意図的に収集することはありません。誤って収集された場合はご連絡ください。速やかに削除いたします。",
+s10_title:"10. お客様の権利",s10_p1:"お客様はいつでも次のことが可能です：",
+s10_l1:"端末設定から本アプリの写真アクセス権限を取り消す",s10_l2:"広告 ID のリセット・削除、パーソナライズ広告のオプトアウト",
+s10_l3:"本アプリをアンインストールしてすべてのローカルデータを削除する",s10_l4:"メールにて個人情報の開示・訂正・削除を請求する",
+s11_title:"11. ポリシーの更新",
+s11_p1:"本ポリシーは法令の変更やサービス内容の調整により更新される場合があります。更新後は本ページに掲載し、上部の「最終更新日」を改訂します。",
+s12_title:"12. お問い合わせ",s12_p1:"本ポリシーに関するご質問は、以下までお気軽にご連絡ください：",s12_email:"メールアドレス",
+foot_home:"ホーム",foot_contact:"お問い合わせ"},
+
+"ko":{name:"한국어",
+meta_title:"QuickCut 개인정보처리방침",meta_desc:"QuickCut 개인정보처리방침",
+title:"QuickCut 개인정보처리방침",updated_label:"최종 업데이트",updated_date:"2026년 7월 30일",
+intro:"QuickCut(이하 '본 앱')을 이용해 주셔서 감사합니다. 당사는 이용자의 개인정보와 프라이버시를 중요하게 생각하며, 관련 법령에 따라 정보를 안전하게 보호합니다. 본 앱을 이용하시면 본 방침에 동의하는 것으로 간주됩니다.",
+hl_title:"🔒 사진은 기기를 벗어나지 않습니다",
+hl_body:"QuickCut의 모든 이미지 처리(AI 배경 제거, 화질 개선, 지우개, 크기 조정)는 이용자의 기기에서 로컬로 수행됩니다. 사진을 서버에 업로드하거나 제3자에게 제공하지 않습니다.",
+s1_title:"1. 수집하는 정보",th_type:"데이터 유형",th_use:"이용 목적",th_where:"처리 위치",th_perm:"권한",th_req:"필수 여부",
+r1a:"이용자가 선택한 사진",r1b:"AI 배경 제거, 화질 개선, 지우개, 크기 조정 등 편집 기능 제공",r1c:"기기 내부에서만",
+r2a:"광고 ID(Advertising ID)",r2b:"Google AdMob의 광고 게재 및 성과 측정",r2c:"Google 서버",
+r3a:"구매 기록",r3b:"Pro 버전 구매 상태 확인 및 구매 복원",r3c:"Google Play 서비스",
+r4a:"앱 환경설정",r4b:"언어 설정 및 체험 기간 시작 시점 저장",r4c:"기기 내부에서만",
+s2_title:"2. 사진 및 이미지 데이터",s2_p1:"본 앱에서 선택한 사진은 이용자가 직접 실행한 편집 기능에만 사용됩니다:",
+s2_l1:"AI 배경 제거",s2_l2:"AI 화질 개선",s2_l3:"지우개 / 복원 브러시",s2_l4:"크기 조정 및 자르기",s2_l5:"일괄 처리",
+s2_p2:"모든 처리는 이용자의 기기에서 완료되며 인터넷 연결이 필요하지 않습니다. 당사는 이용자의 사진에 접근, 열람, 저장, 공유할 수 없습니다. 편집 결과는 이용자가 '저장'을 눌렀을 때만 기기 갤러리에 기록됩니다.",
+s3_title:"3. 광고",
+s3_p1:"본 앱의 무료 버전에서는 Google AdMob이 제공하는 광고가 표시됩니다. AdMob은 맞춤형 광고 제공 및 성과 측정을 위해 기기의 광고 ID, 대략적인 위치, 광고 상호작용 기록을 수집·이용할 수 있습니다.",
+s3_p2:"기기의 '설정 → Google → 광고'에서 광고 ID를 재설정하거나 삭제할 수 있으며, 맞춤형 광고를 거부할 수도 있습니다.",
+s3_p3:"Google의 데이터 이용 방식은 다음을 참고하세요:",
+s3_note:"Pro 버전으로 업그레이드하거나 체험 기간 중에는 광고가 표시되지 않습니다.",
+s4_title:"4. 구매 및 결제",
+s4_p1:"Pro 버전 구매는 Google Play 결제 서비스를 통해 처리됩니다. 당사는 카드 번호나 결제 정보를 수집·저장·조회하지 않으며, 모든 거래는 Google Play가 직접 처리합니다.",
+s4_p2:"본 앱은 Pro 기능 해제를 위해 '구매 여부' 상태만 기기 내부에 저장합니다.",
+s5_title:"5. 권한 안내",
+p1a:"사진 및 미디어",p1b:"편집할 사진 선택 및 편집 결과의 갤러리 저장",p1c:"필수",
+p2a:"인터넷 연결",p2b:"광고 표시 및 구매 상태 확인",p2c:"선택",
+s5_p1:"본 앱은 연락처, 문자, 통화 기록, 마이크, 정밀 위치에 접근하지 않습니다.",
+s6_title:"6. 제3자 서비스",s6_p1:"본 앱은 다음 제3자 서비스를 이용합니다:",
+s6_l1:"Google AdMob — 광고 게재",s6_l2:"Google Play 결제 — 인앱 구매",s6_l3:"Google Play 서비스 — 기본 기능 지원",
+s6_p2:"각 서비스에는 자체 개인정보처리방침이 있으므로 함께 확인하시기 바랍니다.",
+s7_title:"7. 데이터 보관",
+s7_p1:"이미지 처리가 모두 기기 내부에서 이루어지므로 당사 서버에는 이용자의 사진이 저장되지 않습니다. 앱 환경설정(언어, 체험 기간, 구매 상태)은 기기에 저장되며 앱을 삭제하면 함께 제거됩니다.",
+s8_title:"8. 데이터 보안",
+s8_p1:"당사는 데이터 보호를 위해 합리적인 기술적·관리적 조치를 적용합니다. 사진 처리가 네트워크를 거치지 않으므로 전송 중 가로채기 위험이 본질적으로 존재하지 않습니다.",
+s9_title:"9. 아동의 개인정보",
+s9_p1:"본 앱은 13세 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 의도적으로 수집하지 않습니다. 잘못 수집된 경우 연락 주시면 신속히 삭제하겠습니다.",
+s10_title:"10. 이용자의 권리",s10_p1:"이용자는 언제든지 다음을 할 수 있습니다:",
+s10_l1:"기기 설정에서 본 앱의 사진 접근 권한 철회",s10_l2:"광고 ID 재설정·삭제 및 맞춤형 광고 거부",
+s10_l3:"앱을 삭제하여 모든 로컬 데이터 제거",s10_l4:"이메일로 개인정보 열람·정정·삭제 요청",
+s11_title:"11. 방침 변경",
+s11_p1:"본 방침은 법령 변경이나 서비스 조정에 따라 업데이트될 수 있습니다. 변경 시 본 페이지에 게시하고 상단의 '최종 업데이트' 날짜를 갱신합니다.",
+s12_title:"12. 문의하기",s12_p1:"본 방침에 대해 궁금한 점이 있으시면 아래로 문의해 주세요:",s12_email:"이메일",
+foot_home:"홈",foot_contact:"문의하기"},
+
+"es":{name:"Español",
+meta_title:"Política de Privacidad de QuickCut",meta_desc:"Política de Privacidad de QuickCut",
+title:"Política de Privacidad de QuickCut",updated_label:"Última actualización",updated_date:"30 de julio de 2026",
+intro:"Bienvenido a QuickCut (la «App»). Respetamos tus datos personales y tu privacidad, y protegemos tu información conforme a la legislación aplicable. Al usar la App, aceptas esta Política de Privacidad.",
+hl_title:"🔒 Tus fotos nunca salen de tu dispositivo",
+hl_body:"Todo el procesamiento de imágenes de QuickCut (eliminación de fondo con IA, mejora, borrador y redimensionado) se ejecuta localmente en tu dispositivo. Nunca subimos tus fotos a ningún servidor ni las compartimos con terceros.",
+s1_title:"1. Qué datos recopilamos",th_type:"Tipo de dato",th_use:"Finalidad",th_where:"Dónde se procesa",th_perm:"Permiso",th_req:"Obligatorio",
+r1a:"Fotos que seleccionas",r1b:"Para ofrecer eliminación de fondo con IA, mejora, borrador y redimensionado",r1c:"Solo en el dispositivo",
+r2a:"Identificador de publicidad",r2b:"Usado por Google AdMob para mostrar y medir anuncios",r2c:"Servidores de Google",
+r3a:"Registros de compra",r3b:"Para verificar el estado Pro y restaurar compras",r3c:"Servicios de Google Play",
+r4a:"Preferencias de la app",r4b:"Para recordar tu idioma y la fecha de inicio de la prueba",r4c:"Solo en el dispositivo",
+s2_title:"2. Fotos y datos de imagen",s2_p1:"Las fotos que seleccionas en la App se usan únicamente para las funciones de edición que activas de forma expresa:",
+s2_l1:"Eliminación de fondo con IA",s2_l2:"Mejora con IA",s2_l3:"Borrador / Pincel de restauración",s2_l4:"Redimensionar y recortar",s2_l5:"Procesamiento por lotes",
+s2_p2:"Todo el procesamiento ocurre en tu dispositivo y no requiere conexión a internet. No podemos acceder, ver, almacenar ni compartir tus fotos. Los resultados se guardan en la galería de tu dispositivo solo cuando pulsas Guardar.",
+s3_title:"3. Publicidad",
+s3_p1:"La versión gratuita de la App muestra anuncios proporcionados por Google AdMob. AdMob puede recopilar y usar el identificador de publicidad de tu dispositivo, tu ubicación aproximada y datos de interacción con los anuncios para mostrar publicidad personalizada y medir su rendimiento.",
+s3_p2:"Puedes restablecer o eliminar tu identificador de publicidad, o rechazar la publicidad personalizada, desde Ajustes → Google → Anuncios en tu dispositivo.",
+s3_p3:"Para saber cómo utiliza Google los datos, consulta:",
+s3_note:"No se muestran anuncios mientras uses la versión Pro o durante el período de prueba gratuito.",
+s4_title:"4. Compras y pagos",
+s4_p1:"Las compras Pro se procesan mediante la Facturación de Google Play. Nunca recopilamos, almacenamos ni accedemos al número de tu tarjeta ni a ningún dato de pago; todas las transacciones las gestiona directamente Google Play.",
+s4_p2:"La App solo almacena localmente un indicador de si se ha realizado la compra, con el fin de desbloquear las funciones Pro.",
+s5_title:"5. Permisos",
+p1a:"Fotos y multimedia",p1b:"Para que puedas seleccionar fotos y guardar los resultados en tu galería",p1c:"Obligatorio",
+p2a:"Acceso a internet",p2b:"Para mostrar anuncios y verificar el estado de compra",p2c:"Opcional",
+s5_p1:"La App no accede a tus contactos, SMS, registros de llamadas, micrófono ni ubicación precisa.",
+s6_title:"6. Servicios de terceros",s6_p1:"La App utiliza los siguientes servicios de terceros:",
+s6_l1:"Google AdMob — publicidad",s6_l2:"Facturación de Google Play — compras en la aplicación",s6_l3:"Servicios de Google Play — soporte de plataforma",
+s6_p2:"Cada servicio cuenta con su propia política de privacidad, que te recomendamos revisar.",
+s7_title:"7. Conservación de datos",
+s7_p1:"Dado que todo el procesamiento de imágenes ocurre en el dispositivo, nuestros servidores no conservan ninguna de tus fotos. Las preferencias de la app (idioma, período de prueba, estado de compra) se almacenan en tu dispositivo y se eliminan al desinstalar la App.",
+s8_title:"8. Seguridad de los datos",
+s8_p1:"Aplicamos medidas técnicas y organizativas razonables para proteger los datos. Como el procesamiento de fotos nunca viaja por la red, tus imágenes no están expuestas a interceptación durante la transmisión.",
+s9_title:"9. Privacidad de los menores",
+s9_p1:"La App no está dirigida a menores de 13 años y no recopilamos conscientemente datos personales de menores. Si crees que se han recopilado datos de un menor, contáctanos y los eliminaremos con prontitud.",
+s10_title:"10. Tus derechos",s10_p1:"En cualquier momento puedes:",
+s10_l1:"Revocar el permiso de acceso a fotos desde los ajustes del dispositivo",s10_l2:"Restablecer o eliminar tu identificador de publicidad y rechazar la publicidad personalizada",
+s10_l3:"Desinstalar la App para eliminar todos los datos locales",s10_l4:"Escribirnos para solicitar acceso, rectificación o supresión de tus datos personales",
+s11_title:"11. Actualizaciones de la política",
+s11_p1:"Esta política puede actualizarse por cambios legales o ajustes del servicio. Las actualizaciones se publicarán en esta página junto con una nueva fecha de «Última actualización».",
+s12_title:"12. Contacto",s12_p1:"Si tienes alguna duda sobre esta Política de Privacidad, contáctanos:",s12_email:"Correo electrónico",
+foot_home:"Inicio",foot_contact:"Contacto"}
+};
+
+const STORAGE_KEY="qp_lang";
+const HTML_LANG={"zh-TW":"zh-TW","zh-CN":"zh-CN","en":"en","ja":"ja","ko":"ko","es":"es"};
+
+function detectLang(){
+  const saved=localStorage.getItem(STORAGE_KEY);
+  if(saved&&LANGS[saved])return saved;
+  const list=navigator.languages||[navigator.language||"en"];
+  for(const raw of list){
+    const l=raw.toLowerCase();
+    if(l.startsWith("zh")) return /(tw|hk|mo|hant)/.test(l)?"zh-TW":"zh-CN";
+    if(l.startsWith("ja"))return "ja";
+    if(l.startsWith("ko"))return "ko";
+    if(l.startsWith("es"))return "es";
+    if(l.startsWith("en"))return "en";
+  }
+  return "en";
+}
+
+function applyLang(code){
+  const d=LANGS[code]||LANGS.en;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.getAttribute("data-i18n");
+    if(d[k])el.textContent=d[k];
+  });
+  document.querySelectorAll("[data-i18n-content]").forEach(el=>{
+    const k=el.getAttribute("data-i18n-content");
+    if(d[k])el.setAttribute("content",d[k]);
+  });
+  if(d.meta_title)document.title=d.meta_title;
+  document.documentElement.lang=HTML_LANG[code]||"en";
+  document.getElementById("langLabel").textContent=d.name;
+  document.querySelectorAll("#langMenu button").forEach(b=>{
+    b.setAttribute("aria-selected",b.dataset.code===code?"true":"false");
+  });
+  localStorage.setItem(STORAGE_KEY,code);
+}
+
+(function(){
+  const menu=document.getElementById("langMenu");
+  Object.entries(LANGS).forEach(([code,v])=>{
+    const b=document.createElement("button");
+    b.dataset.code=code;b.textContent=v.name;b.setAttribute("role","menuitem");
+    b.onclick=()=>{applyLang(code);closeMenu();};
+    menu.appendChild(b);
+  });
+})();
+
+const btn=document.getElementById("langBtn");
+const menu=document.getElementById("langMenu");
+function closeMenu(){menu.classList.remove("open");btn.setAttribute("aria-expanded","false");}
+btn.addEventListener("click",e=>{
+  e.stopPropagation();
+  const open=menu.classList.toggle("open");
+  btn.setAttribute("aria-expanded",open?"true":"false");
+});
+document.addEventListener("click",closeMenu);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu();});
+
+applyLang(detectLang());
+</script>
 </body>
 </html>
