@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickCut 封閉測試招募 — 誠徵測試夥伴</title>
+<meta name="description" content="QuickCut AI 修圖 App 封閉測試招募中，加入測試群組即可搶先體驗。">
+<meta property="og:title" content="QuickCut 封閉測試招募">
+<meta property="og:description" content="誠徵 12 位測試夥伴，三步驟輕鬆加入！">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#4A6BFF;
+  --brand-dark:#304FFE;
+  --brand-light:#46D4FF;
+  --bg:#f4f6fc;
+  --card:#fff;
+  --text:#242b3d;
+  --text-mid:#667085;
+  --border:#e6eaf5;
+  --ok:#12b76a;
+  --warn:#f79009;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Noto Sans TC',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{text-decoration:none}
+
+/* ---------- Hero ---------- */
+.hero{
+  background:linear-gradient(140deg,#5A7BFF,#46D4FF);
+  color:#fff;padding:56px 20px 64px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(700px 300px at 50% -20%,rgba(255,255,255,.3),transparent 70%);
+  pointer-events:none;
+}
+.hero-in{max-width:640px;margin:auto;position:relative;z-index:1}
+.app-icon{
+  width:76px;height:76px;margin:0 auto 18px;border-radius:20px;
+  background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.42);
+  display:grid;place-items:center;font-size:38px;
+  box-shadow:0 10px 30px rgba(0,0,0,.16);
+}
+.hero h1{font-size:clamp(26px,6vw,36px);font-weight:900;letter-spacing:-.02em;margin-bottom:10px}
+.hero .sub{font-size:clamp(15px,3.4vw,17px);opacity:.95;margin-bottom:22px}
+
+/* 進度 */
+.progress-box{
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);
+  border-radius:16px;padding:16px 20px;max-width:420px;margin:0 auto;
+}
+.progress-num{font-size:30px;font-weight:900;line-height:1.2}
+.progress-num span{font-size:15px;font-weight:500;opacity:.9}
+.bar{height:9px;border-radius:99px;background:rgba(255,255,255,.28);margin:11px 0 7px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;background:#fff;transition:width 1.1s cubic-bezier(.22,1,.36,1)}
+.progress-hint{font-size:13px;opacity:.92}
+
+/* ---------- Layout ---------- */
+.wrap{max-width:640px;margin:0 auto;padding:34px 18px 60px}
+.section-t{
+  font-size:20px;font-weight:900;color:var(--brand-dark);
+  margin:0 0 6px;display:flex;align-items:center;gap:9px;
+}
+.section-d{color:var(--text-mid);font-size:14.5px;margin-bottom:20px}
+
+/* ---------- Task card ---------- */
+.task{
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:22px 24px;box-shadow:0 10px 28px rgba(30,50,120,.07);margin-bottom:30px;
+}
+.task ul{list-style:none;margin-top:12px}
+.task li{
+  display:flex;gap:11px;align-items:flex-start;
+  padding:9px 0;border-bottom:1px dashed var(--border);font-size:15px;
+}
+.task li:last-child{border-bottom:none}
+.task li .k{flex-shrink:0;font-size:18px;line-height:1.5}
+
+/* ---------- Steps ---------- */
+.step{
+  background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:24px;margin-bottom:16px;box-shadow:0 10px 28px rgba(30,50,120,.07);
+  transition:.25s;position:relative;overflow:hidden;
+}
+.step::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--brand),var(--brand-light));
+}
+.step:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(30,50,120,.12)}
+.step.done{border-color:rgba(18,183,106,.45);background:linear-gradient(180deg,rgba(18,183,106,.05),#fff)}
+.step.done::before{background:var(--ok)}
+.step-head{display:flex;align-items:center;gap:13px;margin-bottom:10px}
+.num{
+  width:38px;height:38px;flex-shrink:0;border-radius:11px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-light));
+  color:#fff;display:grid;place-items:center;font-size:17px;font-weight:900;
+}
+.step.done .num{background:var(--ok)}
+.step.done .num::after{content:"✓";font-size:19px}
+.step.done .num i{display:none}
+.step h3{font-size:17px;font-weight:700}
+.step p{color:var(--text-mid);font-size:14.5px;margin-bottom:15px}
+.step .warn{
+  background:#fffaf0;border:1px solid #fde9c4;border-left:3px solid var(--warn);
+  border-radius:10px;padding:11px 14px;font-size:13.5px;color:#8a5a00;margin-bottom:15px;
+}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 22px;border-radius:12px;font-size:15px;font-weight:700;
+  transition:.22s;cursor:pointer;border:none;font-family:inherit;
+}
+.btn-main{background:var(--brand);color:#fff;flex:1;min-width:190px}
+.btn-main:hover{background:var(--brand-dark);transform:translateY(-2px);box-shadow:0 8px 20px rgba(74,107,255,.34)}
+.btn-copy{
+  background:#f1f4fd;color:var(--brand-dark);border:1px solid var(--border);
+  padding:13px 15px;
+}
+.btn-copy:hover{background:#e7ecfb}
+.btn-copy.ok{background:rgba(18,183,106,.13);color:#067647;border-color:rgba(18,183,106,.3)}
+
+/* ---------- Contact ---------- */
+.contact{
+  background:linear-gradient(135deg,rgba(74,107,255,.09),rgba(70,212,255,.1));
+  border:1px solid rgba(74,107,255,.24);border-radius:18px;
+  padding:26px;text-align:center;margin-top:26px;
+}
+.contact h3{font-size:18px;font-weight:900;color:var(--brand-dark);margin-bottom:8px}
+.contact p{color:var(--text-mid);font-size:14.5px;margin-bottom:16px}
+.mail{
+  display:inline-flex;align-items:center;gap:9px;
+  background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:12px 18px;font-size:15px;font-weight:600;color:var(--brand-dark);
+  cursor:pointer;transition:.2s;
+}
+.mail:hover{border-color:var(--brand);transform:translateY(-2px)}
+
+/* ---------- FAQ ---------- */
+.faq{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  margin-bottom:11px;overflow:hidden;
+}
+.faq summary{
+  padding:16px 20px;font-weight:700;font-size:15px;cursor:pointer;
+  list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:21px;color:var(--brand);font-weight:400;transition:.25s;flex-shrink:0}
+.faq[open] summary::after{transform:rotate(45deg)}
+.faq p{padding:0 20px 17px;color:var(--text-mid);font-size:14.5px}
+
+/* ---------- Features preview ---------- */
+.feat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px;margin-top:14px}
+.feat{
+  background:#fff;border:1px solid var(--border);border-radius:13px;
+  padding:15px;text-align:center;
+}
+.feat .e{font-size:24px;display:block;margin-bottom:5px}
+.feat span.t{font-size:13.5px;font-weight:700;display:block}
+
+footer{
+  text-align:center;color:var(--text-mid);font-size:13px;
+  padding:26px 20px 40px;border-top:1px solid var(--border);background:#fff;
+}
+footer a{color:var(--text-mid);margin:0 8px}
+footer a:hover{color:var(--brand)}
+
+/* Toast */
+.toast{
+  position:fixed;left:50%;bottom:26px;transform:translate(-50%,90px);
+  background:#242b3d;color:#fff;padding:13px 22px;border-radius:12px;
+  font-size:14.5px;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.24);
+  opacity:0;transition:.3s;z-index:999;pointer-events:none;
+}
+.toast.show{transform:translate(-50%,0);opacity:1}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="app-icon">✂</div>
+    <h1>QuickCut 封閉測試招募</h1>
+    <p class="sub">AI 去背 × 畫質增強 × 批次處理<br>誠心尋求互測夥伴，一起通關上架！</p>
+
+    <div class="progress-box">
+      <div class="progress-num" id="pnum">還差 12 <span>人</span></div>
+      <div class="bar"><i id="pbar"></i></div>
+      <div class="progress-hint">Google Play 封閉測試需滿 <strong>12 人 / 14 天</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 測試任務 -->
+  <h2 class="section-t">📋 測試任務</h2>
+  <p class="section-d">很輕鬆，只要保持安裝並每天打開一次就好</p>
+  <div class="task">
+    <ul>
+      <li><span class="k">📲</span><span>下載 App 後 <strong>保持安裝 14 天</strong>，中途請勿移除</span></li>
+      <li><span class="k">☀️</span><span>每天<strong>開啟一次</strong> App（打開看一眼就可以）</span></li>
+      <li><span class="k">💬</span><span>有 Bug 或建議歡迎回報，非常感謝但不強制</span></li>
+      <li><span class="k">🤝</span><span><strong>百分之百回測</strong>：你有需求我一定幫你掛滿 14 天</span></li>
+    </ul>
+  </div>
+
+  <!-- 三步驟 -->
+  <h2 class="section-t">🚀 加入測試三步驟</h2>
+  <p class="section-d">請依序完成，順序不能顛倒喔</p>
+
+  <!-- Step 1 -->
+  <div class="step" id="s1">
+    <div class="step-head">
+      <div class="num"><i>1</i></div>
+      <h3>加入 Google 測試群組</h3>
+    </div>
+    <p>先加入群組才會取得下載權限，這是最關鍵的第一步。</p>
+    <div class="warn">⚠️ 請務必先加入群組，否則後面兩步會顯示「找不到應用程式」</div>
+    <div class="btn-row">
+      <a class="btn btn-main" href="https://groups.google.com/d/forum/frank-testers-group"
+         target="_blank" rel="noopener noreferrer" onclick="mark('s1')">
+        前往加入群組 ↗
+      </a>
+      <button class="btn btn-copy" onclick="copy('https://groups.google.com/d/forum/frank-testers-group',this)">複製連結</button>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="step" id="s2">
+    <div class="step-head">
+      <div class="num"><i>2</i></div>
+      <h3>成為測試人員</h3>
+    </div>
+    <p>在網頁上點擊「成為測試人員 / Become a tester」按鈕。</p>
+    <div class="btn-row">
+      <a class="btn btn-main" href="https://play.google.com/apps/testing/com.franklu.quickcut"
+         target="_blank" rel="noopener noreferrer" onclick="mark('s2')">
+        成為測試人員 ↗
+      </a>
+      <button class="btn btn-copy" onclick="copy('https://play.google.com/apps/testing/com.franklu.quickcut',this)">複製連結</button>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="step" id="s3">
+    <div class="step-head">
+      <div class="num"><i>3</i></div>
+      <h3>下載 App 開始測試</h3>
+    </div>
+    <p>請用 Android 手機開啟，並確認 Play 商店已切換到剛才加入測試的帳號。</p>
+    <div class="warn">⚠️ 若顯示「找不到項目」，請切換 Play 商店帳號，或等 5～10 分鐘再試</div>
+    <div class="btn-row">
+      <a class="btn btn-main" href="https://play.google.com/store/apps/details?id=com.franklu.quickcut"
+         target="_blank" rel="noopener noreferrer" onclick="mark('s3')">
+        前往 Play 商店下載 ↗
+      </a>
+      <button class="btn btn-copy" onclick="copy('https://play.google.com/store/apps/details?id=com.franklu.quickcut',this)">複製連結</button>
+    </div>
+  </div>
+
+  <!-- 聯絡 -->
+  <div class="contact">
+    <h3>🙋 需要測試邀請連結？</h3>
+    <p>私訊我你的 Google 帳號，我會立刻寄出邀請</p>
+    <span class="mail" onclick="copy('bpotato1230@gmail.com',this,'已複製 Email')">
+      ✉️ bpotato1230@gmail.com
+    </span>
+  </div>
+
+  <!-- App 功能預覽 -->
+  <h2 class="section-t" style="margin-top:38px">✨ 這是什麼 App？</h2>
+  <p class="section-d">QuickCut 是一款 100% 本機處理的 AI 修圖工具，照片不上傳雲端</p>
+  <div class="feat-grid">
+    <div class="feat"><span class="e">🎯</span><span class="t">AI 去背景</span></div>
+    <div class="feat"><span class="e">✨</span><span class="t">AI 變清晰</span></div>
+    <div class="feat"><span class="e">🖌</span><span class="t">消除筆</span></div>
+    <div class="feat"><span class="e">📐</span><span class="t">調尺寸裁切</span></div>
+    <div class="feat"><span class="e">⚡</span><span class="t">批次處理</span></div>
+    <div class="feat"><span class="e">🔒</span><span class="t">不上傳雲端</span></div>
+  </div>
+
+  <!-- FAQ -->
+  <h2 class="section-t" style="margin-top:38px">❓ 常見問題</h2>
+  <p class="section-d">遇到狀況先看這裡</p>
+
+  <details class="faq" open>
+    <summary>點了連結顯示「找不到應用程式」？</summary>
+    <p>90% 是因為還沒加入 Google 群組，或 Play 商店帳號不是加入測試的那組。請先完成第一步，再到 Play 商店右上角頭像確認帳號是否正確。</p>
+  </details>
+  <details class="faq">
+    <summary>加入群組後多久能下載？</summary>
+    <p>通常幾分鐘內生效，偶爾需要等 10～30 分鐘。若還是不行，請清除 Play 商店快取後重試。</p>
+  </details>
+  <details class="faq">
+    <summary>一定要每天開嗎？漏一天會怎樣？</summary>
+    <p>Google 主要看「連續 14 天有 12 位測試者持續安裝」。偶爾漏開一天影響不大，但保持安裝千萬不要移除。</p>
+  </details>
+  <details class="faq">
+    <summary>測試會不會有廣告或收費？</summary>
+    <p>測試版完全免費。App 內建 3 天 Pro 試用，試用期間無廣告，可以完整體驗所有功能。</p>
+  </details>
+  <details class="faq">
+    <summary>我的照片會被上傳嗎？</summary>
+    <p>不會。QuickCut 所有 AI 處理都在你的手機上完成，不需要網路，照片不會傳到任何伺服器。</p>
+  </details>
+  <details class="faq">
+    <summary>測試結束後 App 會消失嗎？</summary>
+    <p>不會，正式上架後可以直接更新為正式版繼續使用。</p>
+  </details>
+
+</div>
+
+<footer>
+  <div style="margin-bottom:8px">
+    <a href="index.html">產品介紹</a>
+    <a href="privacy.html">隱私權政策</a>
+    <a href="mailto:bpotato1230@gmail.com">聯絡我</a>
+  </div>
+  © 2026 QuickCut — 感謝每一位測試夥伴 🙏
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* 進度條動畫（目前 0/12，可自行調整 joined 數字） */
+const NEED = 12;
+const joined = 0;                    // ← 已加入人數，招到人就改這裡
+const remain = Math.max(NEED - joined, 0);
+document.getElementById('pnum').innerHTML =
+  remain > 0 ? `還差 ${remain} <span>人</span>` : `名額已滿 <span>感謝大家！</span>`;
+setTimeout(()=>{
+  document.getElementById('pbar').style.width = (joined / NEED * 100) + '%';
+}, 350);
+
+/* 步驟完成狀態（存 localStorage） */
+const KEY = 'qc_tester_steps';
+function loadSteps(){
+  try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch(e){ return {}; }
+}
+function mark(id){
+  const s = loadSteps(); s[id] = true;
+  localStorage.setItem(KEY, JSON.stringify(s));
+  setTimeout(()=>document.getElementById(id).classList.add('done'), 400);
+}
+(function render(){
+  const s = loadSteps();
+  Object.keys(s).forEach(id=>{
+    const el = document.getElementById(id);
+    if (el) el.classList.add('done');
+  });
+})();
+
+/* 複製 */
+function copy(text, el, msg){
+  const done = ()=>{
+    toast(msg || '已複製連結');
+    if (el && el.classList.contains('btn-copy')){
+      const old = el.textContent;
+      el.textContent = '已複製 ✓'; el.classList.add('ok');
+      setTimeout(()=>{ el.textContent = old; el.classList.remove('ok'); }, 1800);
+    }
+  };
+  if (navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(text).then(done).catch(()=>fallback(text, done));
+  } else fallback(text, done);
+}
+function fallback(text, cb){
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); cb(); } catch(e){ toast('複製失敗，請長按連結'); }
+  document.body.removeChild(ta);
+}
+
+/* Toast */
+let tId;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(tId);
+  tId = setTimeout(()=>t.classList.remove('show'), 2000);
+}
+</script>
+</body>
+</html>
