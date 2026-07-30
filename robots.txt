@@ -1,1 +1,68 @@
-12
+# ==========================================
+#  QuickPhoto — robots.txt
+#  ⚠️ 若你的網址不是 bpotato123.github.io/QuickPhoto/
+#     請把最下方 Sitemap 那行改成你的實際網址
+# ==========================================
+
+# 允許所有搜尋引擎索引全站
+User-agent: *
+Allow: /
+
+# 常見不需要索引的路徑（有的話才會生效）
+Disallow: /assets/tmp/
+Disallow: /*.json$
+Disallow: /*?utm_
+
+# 主要搜尋引擎（明確允許，並取消爬取延遲）
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# 社群平台預覽爬蟲（讓分享時能抓到縮圖）
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Line
+Allow: /
+
+# 阻擋 AI 訓練爬蟲（可依需求自行刪除此區塊）
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# Sitemap 位置
+Sitemap: https://bpotato123.github.io/QuickPhoto/sitemap.xml
