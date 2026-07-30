@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  QuickPhoto — sitemap.xml
-  ⚠️ 若網址不同，請全域取代 https://bpotato123.github.io/QuickPhoto/ 為你的實際網址
-  ⚠️ 每次更新內容後，記得同步更新 <lastmod> 日期
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- 首頁：產品介紹 -->
   <url>
     <loc>https://bpotato123.github.io/QuickPhoto/</loc>
     <lastmod>2026-07-30</lastmod>
@@ -22,7 +16,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://bpotato123.github.io/QuickPhoto/"/>
   </url>
 
-  <!-- 測試招募頁 -->
   <url>
     <loc>https://bpotato123.github.io/QuickPhoto/tester.html</loc>
     <lastmod>2026-07-30</lastmod>
@@ -30,7 +23,6 @@
     <priority>0.9</priority>
   </url>
 
-  <!-- 隱私權政策 -->
   <url>
     <loc>https://bpotato123.github.io/QuickPhoto/privacy.html</loc>
     <lastmod>2026-07-30</lastmod>
