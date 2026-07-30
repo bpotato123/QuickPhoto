@@ -3,604 +3,658 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickPhoto - AI 快速修圖</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
+<title data-i18n="meta_title">QuickPhoto — AI 快速修圖</title>
+<meta name="description" data-i18n-content="meta_desc" content="AI 快速修圖、批次去背、一鍵美化圖片">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Sans+JP:wght@400;700;900&family=Noto+Sans+KR:wght@400;700;900&family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root{
+  --brand:#4A6BFF;
+  --brand-dark:#304FFE;
+  --brand-light:#46D4FF;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --text:#2b3245;
+  --text-mid:#6b7280;
+  --border:#e6eaf2;
+  --radius:20px;
+  --shadow:0 12px 32px rgba(30,50,120,.08);
+  --shadow-lg:0 20px 50px rgba(30,50,120,.14);
+  --max:1160px;
 }
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-
-    font-family:'Noto Sans TC',sans-serif;
-    background:#f5f7fb;
-    color:#333;
-    line-height:1.8;
+  font-family:'Inter','Noto Sans TC','Noto Sans JP','Noto Sans KR',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
 }
+img{max-width:100%;display:block}
+a{text-decoration:none}
 
-header{
-
-background:linear-gradient(135deg,#5A7BFF,#46D4FF);
-
-padding:90px 20px;
-text-align:center;
-color:white;
-
+/* ---------- Nav ---------- */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--border);
 }
-
-header h1{
-
-font-size:60px;
-font-weight:900;
-margin-bottom:20px;
-
+.nav-inner{
+  max-width:var(--max);margin:auto;
+  padding:14px 20px;
+  display:flex;align-items:center;gap:16px;
 }
-
-header p{
-
-font-size:22px;
-opacity:.95;
-margin-bottom:40px;
-
+.logo{
+  font-weight:900;font-size:20px;color:var(--brand-dark);
+  display:flex;align-items:center;gap:8px;
 }
+.logo-mark{
+  width:32px;height:32px;border-radius:9px;
+  background:linear-gradient(135deg,var(--brand),var(--brand-light));
+  display:grid;place-items:center;color:#fff;font-size:16px;
+}
+.nav-links{
+  display:flex;gap:22px;margin-left:auto;
+  font-size:14px;font-weight:500;color:var(--text-mid);
+}
+.nav-links a{color:inherit;transition:color .2s}
+.nav-links a:hover{color:var(--brand)}
 
+/* Language switcher */
+.lang-wrap{position:relative}
+.lang-btn{
+  display:flex;align-items:center;gap:7px;
+  padding:8px 13px;border-radius:999px;
+  border:1px solid var(--border);background:#fff;
+  font-size:13px;font-weight:600;color:var(--text);
+  cursor:pointer;transition:.2s;font-family:inherit;
+}
+.lang-btn:hover{border-color:var(--brand);color:var(--brand)}
+.lang-menu{
+  position:absolute;right:0;top:calc(100% + 8px);
+  background:#fff;border:1px solid var(--border);
+  border-radius:14px;box-shadow:var(--shadow-lg);
+  padding:6px;min-width:172px;
+  opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:.18s;
+}
+.lang-menu.open{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-menu button{
+  display:flex;align-items:center;justify-content:space-between;
+  width:100%;padding:10px 13px;border:none;background:none;
+  border-radius:9px;font-size:14px;color:var(--text);
+  cursor:pointer;text-align:left;font-family:inherit;transition:.15s;
+}
+.lang-menu button:hover{background:#f1f4fb}
+.lang-menu button[aria-selected="true"]{color:var(--brand);font-weight:700}
+.lang-menu button[aria-selected="true"]::after{content:"✓"}
+
+/* ---------- Hero ---------- */
+.hero{
+  background:linear-gradient(140deg,#5A7BFF 0%,#46D4FF 100%);
+  color:#fff;padding:100px 20px 110px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(900px 380px at 50% -10%,rgba(255,255,255,.28),transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{max-width:840px;margin:auto;position:relative;z-index:1}
+.badge{
+  display:inline-block;padding:7px 16px;border-radius:999px;
+  background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);
+  font-size:13px;font-weight:600;margin-bottom:24px;
+}
+.hero h1{
+  font-size:clamp(36px,6vw,60px);font-weight:900;
+  line-height:1.2;letter-spacing:-.02em;margin-bottom:20px;
+}
+.hero p{font-size:clamp(16px,2.4vw,21px);opacity:.94;margin-bottom:36px}
+.btn-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .btn{
-
-display:inline-block;
-
-padding:16px 40px;
-
-background:white;
-
-color:#4A6BFF;
-
-border-radius:50px;
-
-font-size:18px;
-
-font-weight:bold;
-
-text-decoration:none;
-
-transition:.3s;
-
+  display:inline-flex;align-items:center;gap:9px;
+  padding:15px 34px;border-radius:999px;
+  font-size:16px;font-weight:700;transition:.25s;
 }
+.btn-primary{background:#fff;color:var(--brand)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,0,0,.2)}
+.btn-ghost{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4)}
+.btn-ghost:hover{background:rgba(255,255,255,.26);transform:translateY(-3px)}
 
-.btn:hover{
-
-transform:translateY(-5px);
-
-box-shadow:0 10px 25px rgba(0,0,0,.2);
-
+/* ---------- Sections ---------- */
+section{max-width:var(--max);margin:auto;padding:88px 20px}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 56px}
+.sec-head h2{
+  font-size:clamp(28px,4vw,40px);font-weight:900;
+  color:var(--brand-dark);letter-spacing:-.02em;margin-bottom:14px;
 }
+.sec-head p{color:var(--text-mid);font-size:16px}
 
-section{
-
-max-width:1200px;
-
-margin:auto;
-
-padding:80px 20px;
-
-}
-
-h2{
-
-text-align:center;
-
-font-size:42px;
-
-margin-bottom:60px;
-
-color:#304FFE;
-
-}
-
-.grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-gap:30px;
-
-}
-
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:24px}
 .card{
-
-background:white;
-
-border-radius:20px;
-
-padding:35px;
-
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-
-transition:.3s;
-
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:30px;
+  box-shadow:var(--shadow);transition:.3s;
 }
-
-.card:hover{
-
-transform:translateY(-10px);
-
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:#d7e0f5}
+.card .ico{
+  width:48px;height:48px;border-radius:13px;
+  background:linear-gradient(135deg,rgba(74,107,255,.13),rgba(70,212,255,.16));
+  display:grid;place-items:center;font-size:23px;margin-bottom:16px;
 }
+.card h3{font-size:18px;font-weight:700;margin-bottom:8px}
+.card p{color:var(--text-mid);font-size:15px}
 
-.card h3{
-
-margin-bottom:15px;
-
-font-size:24px;
-
-color:#4A6BFF;
-
+.intro-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:38px;box-shadow:var(--shadow);
 }
+.intro-card p{font-size:17px;color:var(--text-mid)}
 
-.flow{
-
-display:flex;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-gap:20px;
-
-}
-
+/* Steps */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
 .step{
-
-flex:1;
-
-min-width:220px;
-
-background:white;
-
-padding:30px;
-
-border-radius:20px;
-
-text-align:center;
-
-box-shadow:0 10px 25px rgba(0,0,0,.08);
-
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:32px 26px;
+  text-align:center;box-shadow:var(--shadow);
 }
-
 .step .num{
-
-width:60px;
-
-height:60px;
-
-margin:auto;
-
-border-radius:50%;
-
-background:#4A6BFF;
-
-color:white;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-font-size:28px;
-
-font-weight:bold;
-
-margin-bottom:20px;
-
+  width:54px;height:54px;margin:0 auto 18px;border-radius:50%;
+  background:linear-gradient(135deg,var(--brand),var(--brand-light));
+  color:#fff;display:grid;place-items:center;
+  font-size:22px;font-weight:900;
 }
+.step h3{font-size:17px;font-weight:700;margin-bottom:6px}
+.step p{color:var(--text-mid);font-size:15px}
 
-table{
+/* Table */
+.table-wrap{overflow-x:auto;border-radius:var(--radius);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;background:#fff;min-width:520px}
+th{background:var(--brand);color:#fff;padding:17px 14px;font-weight:700;font-size:15px}
+td{padding:16px 14px;text-align:center;border-bottom:1px solid var(--border);font-size:15px}
+tr:last-child td{border-bottom:none}
+tbody tr:nth-child(even){background:#fafbff}
+td.feat{text-align:left;font-weight:600}
+.yes{color:#12b76a;font-weight:700}
+.no{color:#d0d5dd}
 
-width:100%;
-
-border-collapse:collapse;
-
-background:white;
-
-box-shadow:0 15px 40px rgba(0,0,0,.08);
-
-border-radius:15px;
-
-overflow:hidden;
-
-}
-
-th{
-
-background:#4A6BFF;
-
-color:white;
-
-padding:18px;
-
-}
-
-td{
-
-padding:18px;
-
-text-align:center;
-
-border-bottom:1px solid #eee;
-
-}
-
+/* FAQ */
 .faq{
-
-margin-bottom:25px;
-
-background:white;
-
-padding:25px;
-
-border-radius:15px;
-
-box-shadow:0 8px 20px rgba(0,0,0,.08);
-
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;margin-bottom:14px;overflow:hidden;
+  box-shadow:var(--shadow);
 }
+.faq summary{
+  padding:22px 26px;font-weight:700;font-size:16px;
+  cursor:pointer;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:24px;color:var(--brand);font-weight:400;transition:.25s}
+.faq[open] summary::after{transform:rotate(45deg)}
+.faq p{padding:0 26px 22px;color:var(--text-mid);font-size:15px}
 
+/* CTA */
 .cta{
-
-background:linear-gradient(135deg,#4A6BFF,#38C8FF);
-
-padding:90px 20px;
-
-text-align:center;
-
-color:white;
-
+  background:linear-gradient(140deg,var(--brand),#38C8FF);
+  padding:88px 20px;text-align:center;color:#fff;max-width:none;
 }
+.cta h2{font-size:clamp(26px,4vw,38px);font-weight:900;margin-bottom:16px}
+.cta p{font-size:18px;opacity:.94;margin-bottom:34px}
 
 footer{
-
-padding:40px;
-
-text-align:center;
-
-color:#888;
-
-font-size:14px;
-
+  padding:40px 20px;text-align:center;
+  color:var(--text-mid);font-size:14px;
+  border-top:1px solid var(--border);background:#fff;
 }
+.foot-links{display:flex;gap:20px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.foot-links a{color:var(--text-mid);transition:.2s}
+.foot-links a:hover{color:var(--brand)}
 
-@media(max-width:768px){
-
-header h1{
-
-font-size:42px;
-
+@media(max-width:760px){
+  .nav-links{display:none}
+  section{padding:64px 18px}
+  .hero{padding:76px 18px 84px}
 }
-
-header p{
-
-font-size:18px;
-
-}
-
-h2{
-
-font-size:32px;
-
-}
-
-}
-
 </style>
-
 </head>
 <body>
 
-<header>
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="logo"><span class="logo-mark">✂</span>QuickPhoto</a>
+    <div class="nav-links">
+      <a href="#features" data-i18n="nav_features">核心功能</a>
+      <a href="#how" data-i18n="nav_how">操作流程</a>
+      <a href="#compare" data-i18n="nav_compare">功能比較</a>
+      <a href="#faq" data-i18n="nav_faq">常見問題</a>
+    </div>
+    <div class="lang-wrap">
+      <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+        🌐 <span id="langLabel">繁體中文</span> ▾
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu"></div>
+    </div>
+  </div>
+</nav>
 
-<h1>✂ QuickPhoto</h1>
-
-<p>AI 快速修圖・批次去背・一鍵美化圖片</p>
-
-<a class="btn" href="#">立即開始</a>
-
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="hero-inner">
+    <span class="badge" data-i18n="hero_badge">AI 智慧修圖引擎</span>
+    <h1 data-i18n="hero_title">幾秒鐘，完成專業級修圖</h1>
+    <p data-i18n="hero_sub">AI 快速修圖・批次去背・一鍵美化圖片，不需要 Photoshop</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#cta" data-i18n="hero_cta">立即免費開始</a>
+      <a class="btn btn-ghost" href="#features" data-i18n="hero_cta2">查看功能</a>
+    </div>
+  </div>
 </header>
 
+<!-- ================= INTRO ================= -->
 <section>
-
-<h2>🚀 APP介紹</h2>
-
-<div class="card">
-
-<p>
-
-QuickPhoto 是一款專為電商、美工、設計師、自媒體及一般使用者打造的 AI 快速修圖工具。
-
-透過最新 AI 技術，只需要上傳圖片，即可自動完成去背、修圖、美化、裁切及批次處理，大幅節省修圖時間。
-
-不需要 Photoshop，也不用任何修圖經驗，即可快速完成高品質圖片。
-
-</p>
-
-</div>
-
+  <div class="sec-head">
+    <h2 data-i18n="intro_title">關於 QuickPhoto</h2>
+  </div>
+  <div class="intro-card">
+    <p data-i18n="intro_body">QuickPhoto 是一款專為電商、設計師、自媒體及一般使用者打造的 AI 快速修圖工具。透過最新 AI 技術，只需上傳圖片即可自動完成去背、修圖、美化、裁切及批次處理，大幅節省修圖時間。不需要 Photoshop，也不用任何修圖經驗。</p>
+  </div>
 </section>
 
-<section>
-
-<h2>✨ 核心功能</h2>
-
-<div class="grid">
-
-<div class="card">
-
-<h3>📤 圖片上傳</h3>
-
-<p>
-
-支援拖曳上傳、多張圖片上傳、批次上傳。
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🎯 AI 去背</h3>
-
-<p>
-
-自動辨識人物、商品、寵物、物件，一鍵完成高品質去背。
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>🖌 AI 修圖</h3>
-
-<p>
-
-去除瑕疵、背景清理、色彩增強、亮度調整、自動美化。
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>⚡ 批次處理</h3>
-
-<p>
-
-一次處理數百張圖片，大幅提高工作效率。
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>📦 多格式下載</h3>
-
-<p>
-
-支援 PNG、JPG、WebP 高品質下載。
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>☁ 雲端運算</h3>
-
-<p>
-
-免安裝大型軟體，開啟即可使用。
-
-</p>
-
-</div>
-
-</div>
-
+<!-- ================= FEATURES ================= -->
+<section id="features">
+  <div class="sec-head">
+    <h2 data-i18n="feat_title">核心功能</h2>
+    <p data-i18n="feat_sub">從上傳到匯出，全流程 AI 自動化</p>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="ico">📤</div><h3 data-i18n="f1_t">圖片上傳</h3><p data-i18n="f1_d">支援拖曳上傳、多張圖片上傳、批次上傳。</p></div>
+    <div class="card"><div class="ico">🎯</div><h3 data-i18n="f2_t">AI 去背</h3><p data-i18n="f2_d">自動辨識人物、商品、寵物、物件，一鍵完成高品質去背。</p></div>
+    <div class="card"><div class="ico">🖌</div><h3 data-i18n="f3_t">AI 修圖</h3><p data-i18n="f3_d">去除瑕疵、背景清理、色彩增強、亮度調整、自動美化。</p></div>
+    <div class="card"><div class="ico">⚡</div><h3 data-i18n="f4_t">批次處理</h3><p data-i18n="f4_d">一次處理數百張圖片，大幅提高工作效率。</p></div>
+    <div class="card"><div class="ico">📦</div><h3 data-i18n="f5_t">多格式匯出</h3><p data-i18n="f5_d">支援 PNG、JPG、WebP 高品質下載。</p></div>
+    <div class="card"><div class="ico">☁</div><h3 data-i18n="f6_t">雲端運算</h3><p data-i18n="f6_d">免安裝大型軟體，開啟即可使用。</p></div>
+  </div>
 </section>
 
-<section>
-
-<h2>📋 操作流程</h2>
-
-<div class="flow">
-
-<div class="step">
-
-<div class="num">1</div>
-
-<h3>上傳圖片</h3>
-
-<p>拖曳或批次選取圖片。</p>
-
-</div>
-
-<div class="step">
-
-<div class="num">2</div>
-
-<h3>AI 自動修圖</h3>
-
-<p>系統自動去背與優化圖片。</p>
-
-</div>
-
-<div class="step">
-
-<div class="num">3</div>
-
-<h3>下載成果</h3>
-
-<p>高畫質快速下載完成。</p>
-
-</div>
-
-</div>
-
+<!-- ================= HOW ================= -->
+<section id="how">
+  <div class="sec-head">
+    <h2 data-i18n="how_title">操作流程</h2>
+    <p data-i18n="how_sub">三步驟完成，零學習成本</p>
+  </div>
+  <div class="flow">
+    <div class="step"><div class="num">1</div><h3 data-i18n="s1_t">上傳圖片</h3><p data-i18n="s1_d">拖曳或批次選取圖片。</p></div>
+    <div class="step"><div class="num">2</div><h3 data-i18n="s2_t">AI 自動修圖</h3><p data-i18n="s2_d">系統自動去背與優化圖片。</p></div>
+    <div class="step"><div class="num">3</div><h3 data-i18n="s3_t">下載成果</h3><p data-i18n="s3_d">高畫質快速下載完成。</p></div>
+  </div>
 </section>
 
+<!-- ================= AUDIENCE ================= -->
 <section>
-
-<h2>👥 適合哪些人？</h2>
-
-<div class="grid">
-
-<div class="card">
-<h3>🛍 電商賣家</h3>
-<p>快速完成商品去背與商品圖製作。</p>
-</div>
-
-<div class="card">
-<h3>📱 社群經營者</h3>
-<p>快速製作 Facebook、Instagram、Threads 圖片。</p>
-</div>
-
-<div class="card">
-<h3>🎨 設計師</h3>
-<p>節省大量重複修圖時間。</p>
-</div>
-
-<div class="card">
-<h3>📸 攝影師</h3>
-<p>大量照片快速批次修圖。</p>
-</div>
-
-</div>
-
+  <div class="sec-head">
+    <h2 data-i18n="who_title">適合哪些人？</h2>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="ico">🛍</div><h3 data-i18n="w1_t">電商賣家</h3><p data-i18n="w1_d">快速完成商品去背與商品圖製作。</p></div>
+    <div class="card"><div class="ico">📱</div><h3 data-i18n="w2_t">社群經營者</h3><p data-i18n="w2_d">快速製作 Facebook、Instagram、Threads 圖片。</p></div>
+    <div class="card"><div class="ico">🎨</div><h3 data-i18n="w3_t">設計師</h3><p data-i18n="w3_d">節省大量重複修圖時間。</p></div>
+    <div class="card"><div class="ico">📸</div><h3 data-i18n="w4_t">攝影師</h3><p data-i18n="w4_d">大量照片快速批次修圖。</p></div>
+  </div>
 </section>
 
-<section>
-
-<h2>📊 功能比較</h2>
-
-<table>
-
-<tr>
-
-<th>功能</th>
-
-<th>QuickPhoto</th>
-
-<th>傳統修圖</th>
-
-</tr>
-
-<tr>
-
-<td>AI 去背</td>
-
-<td>✅</td>
-
-<td>❌</td>
-
-</tr>
-
-<tr>
-
-<td>批次修圖</td>
-
-<td>✅</td>
-
-<td>❌</td>
-
-</tr>
-
-<tr>
-
-<td>快速完成</td>
-
-<td>數秒</td>
-
-<td>數分鐘~數小時</td>
-
-</tr>
-
-<tr>
-
-<td>免安裝</td>
-
-<td>✅</td>
-
-<td>需安裝</td>
-
-</tr>
-
-<tr>
-
-<td>操作難度</td>
-
-<td>⭐⭐⭐⭐⭐ 簡單</td>
-
-<td>⭐⭐ 困難</td>
-
-</tr>
-
-</table>
-
+<!-- ================= COMPARE ================= -->
+<section id="compare">
+  <div class="sec-head">
+    <h2 data-i18n="cmp_title">功能比較</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align:left" data-i18n="cmp_feature">功能</th>
+          <th>QuickPhoto</th>
+          <th data-i18n="cmp_trad">傳統修圖</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="feat" data-i18n="cmp_r1">AI 去背</td><td class="yes">✓</td><td class="no">✕</td></tr>
+        <tr><td class="feat" data-i18n="cmp_r2">批次修圖</td><td class="yes">✓</td><td class="no">✕</td></tr>
+        <tr><td class="feat" data-i18n="cmp_r3">完成時間</td><td data-i18n="cmp_r3a">數秒</td><td data-i18n="cmp_r3b">數分鐘～數小時</td></tr>
+        <tr><td class="feat" data-i18n="cmp_r4">免安裝</td><td class="yes">✓</td><td data-i18n="cmp_r4b">需安裝</td></tr>
+        <tr><td class="feat" data-i18n="cmp_r5">操作難度</td><td data-i18n="cmp_r5a">★★★★★ 簡單</td><td data-i18n="cmp_r5b">★★ 困難</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
-<section>
-
-<h2>❓ FAQ</h2>
-
-<div class="faq">
-
-<h3>需要會 Photoshop 嗎？</h3>
-
-<p>完全不需要，AI 自動完成修圖。</p>
-
-</div>
-
-<div class="faq">
-
-<h3>可以一次上傳很多圖片嗎？</h3>
-
-<p>可以，支援批次上傳及批次下載。</p>
-
-</div>
-
-<div class="faq">
-
-<h3>支援哪些圖片格式？</h3>
-
-<p>JPG、PNG、WebP 等常見格式。</p>
-
-</div>
-
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="sec-head">
+    <h2 data-i18n="faq_title">常見問題</h2>
+  </div>
+  <details class="faq" open><summary data-i18n="q1">需要會 Photoshop 嗎？</summary><p data-i18n="a1">完全不需要，AI 會自動完成修圖。</p></details>
+  <details class="faq"><summary data-i18n="q2">可以一次上傳很多圖片嗎？</summary><p data-i18n="a2">可以，支援批次上傳及批次下載。</p></details>
+  <details class="faq"><summary data-i18n="q3">支援哪些圖片格式？</summary><p data-i18n="a3">JPG、PNG、WebP 等常見格式。</p></details>
+  <details class="faq"><summary data-i18n="q4">我的圖片安全嗎？</summary><p data-i18n="a4">圖片僅用於處理，處理完成後即刻刪除，不會用於其他用途。</p></details>
 </section>
 
-<section class="cta">
-
-<h2 style="color:white;">立即體驗 AI 快速修圖</h2>
-
-<p style="font-size:22px;margin:30px 0;">
-
-幾秒鐘完成去背、修圖、美化，大量圖片一次搞定！
-
-</p>
-
-<a class="btn" href="#">免費開始使用</a>
-
+<!-- ================= CTA ================= -->
+<section class="cta" id="cta">
+  <h2 data-i18n="cta_title">立即體驗 AI 快速修圖</h2>
+  <p data-i18n="cta_sub">幾秒鐘完成去背、修圖、美化，大量圖片一次搞定！</p>
+  <div class="btn-row">
+    <a class="btn btn-primary" href="#" data-i18n="cta_btn">免費開始使用</a>
+  </div>
 </section>
 
 <footer>
-
-© 2026 QuickPhoto AI Image Editor
-
+  <div class="foot-links">
+    <a href="#" data-i18n="foot_privacy">隱私權政策</a>
+    <a href="#" data-i18n="foot_terms">服務條款</a>
+    <a href="#" data-i18n="foot_contact">聯絡我們</a>
+  </div>
+  <div>© 2026 QuickPhoto — AI Image Editor</div>
 </footer>
 
+<script>
+/* ===================== i18n ===================== */
+const LANGS = {
+  "zh-TW": { name:"繁體中文",
+    meta_title:"QuickPhoto — AI 快速修圖", meta_desc:"AI 快速修圖、批次去背、一鍵美化圖片",
+    nav_features:"核心功能", nav_how:"操作流程", nav_compare:"功能比較", nav_faq:"常見問題",
+    hero_badge:"AI 智慧修圖引擎", hero_title:"幾秒鐘，完成專業級修圖",
+    hero_sub:"AI 快速修圖・批次去背・一鍵美化圖片，不需要 Photoshop",
+    hero_cta:"立即免費開始", hero_cta2:"查看功能",
+    intro_title:"關於 QuickPhoto",
+    intro_body:"QuickPhoto 是一款專為電商、設計師、自媒體及一般使用者打造的 AI 快速修圖工具。透過最新 AI 技術，只需上傳圖片即可自動完成去背、修圖、美化、裁切及批次處理，大幅節省修圖時間。不需要 Photoshop，也不用任何修圖經驗。",
+    feat_title:"核心功能", feat_sub:"從上傳到匯出，全流程 AI 自動化",
+    f1_t:"圖片上傳", f1_d:"支援拖曳上傳、多張圖片上傳、批次上傳。",
+    f2_t:"AI 去背", f2_d:"自動辨識人物、商品、寵物、物件，一鍵完成高品質去背。",
+    f3_t:"AI 修圖", f3_d:"去除瑕疵、背景清理、色彩增強、亮度調整、自動美化。",
+    f4_t:"批次處理", f4_d:"一次處理數百張圖片，大幅提高工作效率。",
+    f5_t:"多格式匯出", f5_d:"支援 PNG、JPG、WebP 高品質下載。",
+    f6_t:"雲端運算", f6_d:"免安裝大型軟體，開啟即可使用。",
+    how_title:"操作流程", how_sub:"三步驟完成，零學習成本",
+    s1_t:"上傳圖片", s1_d:"拖曳或批次選取圖片。",
+    s2_t:"AI 自動修圖", s2_d:"系統自動去背與優化圖片。",
+    s3_t:"下載成果", s3_d:"高畫質快速下載完成。",
+    who_title:"適合哪些人？",
+    w1_t:"電商賣家", w1_d:"快速完成商品去背與商品圖製作。",
+    w2_t:"社群經營者", w2_d:"快速製作 Facebook、Instagram、Threads 圖片。",
+    w3_t:"設計師", w3_d:"節省大量重複修圖時間。",
+    w4_t:"攝影師", w4_d:"大量照片快速批次修圖。",
+    cmp_title:"功能比較", cmp_feature:"功能", cmp_trad:"傳統修圖",
+    cmp_r1:"AI 去背", cmp_r2:"批次修圖", cmp_r3:"完成時間", cmp_r3a:"數秒", cmp_r3b:"數分鐘～數小時",
+    cmp_r4:"免安裝", cmp_r4b:"需安裝", cmp_r5:"操作難度", cmp_r5a:"★★★★★ 簡單", cmp_r5b:"★★ 困難",
+    faq_title:"常見問題",
+    q1:"需要會 Photoshop 嗎？", a1:"完全不需要，AI 會自動完成修圖。",
+    q2:"可以一次上傳很多圖片嗎？", a2:"可以，支援批次上傳及批次下載。",
+    q3:"支援哪些圖片格式？", a3:"JPG、PNG、WebP 等常見格式。",
+    q4:"我的圖片安全嗎？", a4:"圖片僅用於處理，處理完成後即刻刪除，不會用於其他用途。",
+    cta_title:"立即體驗 AI 快速修圖", cta_sub:"幾秒鐘完成去背、修圖、美化，大量圖片一次搞定！", cta_btn:"免費開始使用",
+    foot_privacy:"隱私權政策", foot_terms:"服務條款", foot_contact:"聯絡我們"
+  },
+
+  "zh-CN": { name:"简体中文",
+    meta_title:"QuickPhoto — AI 快速修图", meta_desc:"AI 快速修图、批量抠图、一键美化图片",
+    nav_features:"核心功能", nav_how:"操作流程", nav_compare:"功能对比", nav_faq:"常见问题",
+    hero_badge:"AI 智能修图引擎", hero_title:"几秒钟，完成专业级修图",
+    hero_sub:"AI 快速修图・批量抠图・一键美化图片，无需 Photoshop",
+    hero_cta:"立即免费开始", hero_cta2:"查看功能",
+    intro_title:"关于 QuickPhoto",
+    intro_body:"QuickPhoto 是一款专为电商、设计师、自媒体及普通用户打造的 AI 快速修图工具。通过最新 AI 技术，只需上传图片即可自动完成抠图、修图、美化、裁剪及批量处理，大幅节省修图时间。无需 Photoshop，也不需要任何修图经验。",
+    feat_title:"核心功能", feat_sub:"从上传到导出，全流程 AI 自动化",
+    f1_t:"图片上传", f1_d:"支持拖拽上传、多张图片上传、批量上传。",
+    f2_t:"AI 抠图", f2_d:"自动识别人物、商品、宠物、物件，一键完成高质量抠图。",
+    f3_t:"AI 修图", f3_d:"去除瑕疵、背景清理、色彩增强、亮度调整、自动美化。",
+    f4_t:"批量处理", f4_d:"一次处理数百张图片，大幅提高工作效率。",
+    f5_t:"多格式导出", f5_d:"支持 PNG、JPG、WebP 高质量下载。",
+    f6_t:"云端运算", f6_d:"免安装大型软件，打开即可使用。",
+    how_title:"操作流程", how_sub:"三步完成，零学习成本",
+    s1_t:"上传图片", s1_d:"拖拽或批量选取图片。",
+    s2_t:"AI 自动修图", s2_d:"系统自动抠图与优化图片。",
+    s3_t:"下载成果", s3_d:"高清快速下载完成。",
+    who_title:"适合哪些人？",
+    w1_t:"电商卖家", w1_d:"快速完成商品抠图与商品图制作。",
+    w2_t:"社群运营者", w2_d:"快速制作 Facebook、Instagram、小红书图片。",
+    w3_t:"设计师", w3_d:"节省大量重复修图时间。",
+    w4_t:"摄影师", w4_d:"大量照片快速批量修图。",
+    cmp_title:"功能对比", cmp_feature:"功能", cmp_trad:"传统修图",
+    cmp_r1:"AI 抠图", cmp_r2:"批量修图", cmp_r3:"完成时间", cmp_r3a:"数秒", cmp_r3b:"数分钟～数小时",
+    cmp_r4:"免安装", cmp_r4b:"需安装", cmp_r5:"操作难度", cmp_r5a:"★★★★★ 简单", cmp_r5b:"★★ 困难",
+    faq_title:"常见问题",
+    q1:"需要会 Photoshop 吗？", a1:"完全不需要，AI 会自动完成修图。",
+    q2:"可以一次上传很多图片吗？", a2:"可以，支持批量上传及批量下载。",
+    q3:"支持哪些图片格式？", a3:"JPG、PNG、WebP 等常见格式。",
+    q4:"我的图片安全吗？", a4:"图片仅用于处理，处理完成后即刻删除，不会用于其他用途。",
+    cta_title:"立即体验 AI 快速修图", cta_sub:"几秒钟完成抠图、修图、美化，大量图片一次搞定！", cta_btn:"免费开始使用",
+    foot_privacy:"隐私政策", foot_terms:"服务条款", foot_contact:"联系我们"
+  },
+
+  "en": { name:"English",
+    meta_title:"QuickPhoto — AI Photo Editor", meta_desc:"AI photo editing, batch background removal, one-tap enhancement",
+    nav_features:"Features", nav_how:"How it works", nav_compare:"Compare", nav_faq:"FAQ",
+    hero_badge:"AI-Powered Editing Engine", hero_title:"Professional edits in seconds",
+    hero_sub:"AI photo editing, batch background removal and one-tap enhancement — no Photoshop needed",
+    hero_cta:"Start free now", hero_cta2:"See features",
+    intro_title:"About QuickPhoto",
+    intro_body:"QuickPhoto is an AI-powered photo editor built for e-commerce sellers, designers, content creators and everyday users. Just upload an image and AI handles background removal, retouching, enhancement, cropping and batch processing automatically — saving hours of work. No Photoshop, no editing experience required.",
+    feat_title:"Core Features", feat_sub:"Fully automated from upload to export",
+    f1_t:"Image Upload", f1_d:"Drag & drop, multi-file and batch upload supported.",
+    f2_t:"AI Background Removal", f2_d:"Automatically detects people, products, pets and objects for clean one-tap cutouts.",
+    f3_t:"AI Retouching", f3_d:"Remove blemishes, clean backgrounds, boost color, adjust brightness and auto-enhance.",
+    f4_t:"Batch Processing", f4_d:"Process hundreds of images at once and boost productivity.",
+    f5_t:"Multi-format Export", f5_d:"High-quality PNG, JPG and WebP downloads.",
+    f6_t:"Cloud Processing", f6_d:"No heavy software to install — open and start editing.",
+    how_title:"How it works", how_sub:"Three steps, zero learning curve",
+    s1_t:"Upload", s1_d:"Drag & drop or select images in bulk.",
+    s2_t:"AI Auto-Edit", s2_d:"AI removes backgrounds and optimizes your images.",
+    s3_t:"Download", s3_d:"Export in high quality within seconds.",
+    who_title:"Who is it for?",
+    w1_t:"E-commerce Sellers", w1_d:"Create clean product cutouts and listing images fast.",
+    w2_t:"Social Media Managers", w2_d:"Produce Facebook, Instagram and Threads visuals quickly.",
+    w3_t:"Designers", w3_d:"Save hours on repetitive editing tasks.",
+    w4_t:"Photographers", w4_d:"Batch-edit large photo sets in minutes.",
+    cmp_title:"Comparison", cmp_feature:"Feature", cmp_trad:"Traditional editing",
+    cmp_r1:"AI background removal", cmp_r2:"Batch editing", cmp_r3:"Time to finish", cmp_r3a:"Seconds", cmp_r3b:"Minutes to hours",
+    cmp_r4:"No installation", cmp_r4b:"Install required", cmp_r5:"Difficulty", cmp_r5a:"★★★★★ Easy", cmp_r5b:"★★ Hard",
+    faq_title:"Frequently Asked Questions",
+    q1:"Do I need to know Photoshop?", a1:"Not at all — AI handles the editing for you.",
+    q2:"Can I upload many images at once?", a2:"Yes, batch upload and batch download are both supported.",
+    q3:"Which formats are supported?", a3:"Common formats including JPG, PNG and WebP.",
+    q4:"Are my images safe?", a4:"Images are used only for processing and deleted immediately afterwards. They are never used for anything else.",
+    cta_title:"Try AI photo editing today", cta_sub:"Remove backgrounds, retouch and enhance in seconds — at any scale.", cta_btn:"Get started free",
+    foot_privacy:"Privacy Policy", foot_terms:"Terms of Service", foot_contact:"Contact Us"
+  },
+
+  "ja": { name:"日本語",
+    meta_title:"QuickPhoto — AI 画像編集", meta_desc:"AI 画像編集、一括背景削除、ワンタップ補正",
+    nav_features:"主な機能", nav_how:"使い方", nav_compare:"比較", nav_faq:"よくある質問",
+    hero_badge:"AI 画像編集エンジン", hero_title:"数秒で、プロ品質の仕上がりへ",
+    hero_sub:"AI 画像編集・一括背景削除・ワンタップ補正。Photoshop は不要です",
+    hero_cta:"無料ではじめる", hero_cta2:"機能を見る",
+    intro_title:"QuickPhoto について",
+    intro_body:"QuickPhoto は EC 事業者・デザイナー・クリエイター・一般ユーザー向けに開発された AI 画像編集ツールです。画像をアップロードするだけで、背景削除・レタッチ・補正・トリミング・一括処理を自動で実行し、作業時間を大幅に短縮します。Photoshop も編集経験も必要ありません。",
+    feat_title:"主な機能", feat_sub:"アップロードから書き出しまで全自動",
+    f1_t:"画像アップロード", f1_d:"ドラッグ＆ドロップ、複数選択、一括アップロードに対応。",
+    f2_t:"AI 背景削除", f2_d:"人物・商品・ペット・オブジェクトを自動認識し、ワンタップで高品質に切り抜き。",
+    f3_t:"AI レタッチ", f3_d:"不要物の除去、背景整理、色補正、明るさ調整、自動補正。",
+    f4_t:"一括処理", f4_d:"数百枚の画像を一度に処理し、作業効率を大幅に向上。",
+    f5_t:"複数形式で書き出し", f5_d:"PNG・JPG・WebP の高品質ダウンロードに対応。",
+    f6_t:"クラウド処理", f6_d:"大きなソフトのインストール不要。開いてすぐ使えます。",
+    how_title:"使い方", how_sub:"3ステップ、学習コストゼロ",
+    s1_t:"アップロード", s1_d:"ドラッグまたは一括で画像を選択。",
+    s2_t:"AI 自動編集", s2_d:"背景削除と画質最適化を自動で実行。",
+    s3_t:"ダウンロード", s3_d:"高画質のまま素早く書き出し。",
+    who_title:"こんな方におすすめ",
+    w1_t:"EC 事業者", w1_d:"商品の切り抜きと商品画像づくりを高速化。",
+    w2_t:"SNS 運用担当", w2_d:"Facebook・Instagram・Threads 用の画像をすばやく作成。",
+    w3_t:"デザイナー", w3_d:"繰り返しの編集作業を大幅に削減。",
+    w4_t:"フォトグラファー", w4_d:"大量の写真を一括で素早く編集。",
+    cmp_title:"機能比較", cmp_feature:"機能", cmp_trad:"従来の編集",
+    cmp_r1:"AI 背景削除", cmp_r2:"一括編集", cmp_r3:"所要時間", cmp_r3a:"数秒", cmp_r3b:"数分〜数時間",
+    cmp_r4:"インストール不要", cmp_r4b:"インストール必要", cmp_r5:"操作の難しさ", cmp_r5a:"★★★★★ かんたん", cmp_r5b:"★★ 難しい",
+    faq_title:"よくある質問",
+    q1:"Photoshop の知識は必要ですか？", a1:"必要ありません。AI が自動で編集します。",
+    q2:"一度に多くの画像をアップロードできますか？", a2:"はい。一括アップロードと一括ダウンロードに対応しています。",
+    q3:"対応している画像形式は？", a3:"JPG・PNG・WebP などの一般的な形式に対応しています。",
+    q4:"画像は安全ですか？", a4:"画像は処理のみに使用し、処理後ただちに削除されます。他の用途には一切使用しません。",
+    cta_title:"AI 画像編集をいますぐ体験", cta_sub:"背景削除・レタッチ・補正を数秒で。大量の画像もまとめて処理。", cta_btn:"無料ではじめる",
+    foot_privacy:"プライバシーポリシー", foot_terms:"利用規約", foot_contact:"お問い合わせ"
+  },
+
+  "ko": { name:"한국어",
+    meta_title:"QuickPhoto — AI 사진 편집", meta_desc:"AI 사진 편집, 일괄 배경 제거, 원터치 보정",
+    nav_features:"주요 기능", nav_how:"사용 방법", nav_compare:"비교", nav_faq:"자주 묻는 질문",
+    hero_badge:"AI 사진 편집 엔진", hero_title:"몇 초 만에, 전문가급 편집",
+    hero_sub:"AI 사진 편집・일괄 배경 제거・원터치 보정. 포토샵이 필요 없습니다",
+    hero_cta:"무료로 시작하기", hero_cta2:"기능 보기",
+    intro_title:"QuickPhoto 소개",
+    intro_body:"QuickPhoto는 이커머스 판매자, 디자이너, 크리에이터, 일반 사용자를 위한 AI 사진 편집 도구입니다. 이미지를 업로드하기만 하면 배경 제거, 리터칭, 보정, 자르기, 일괄 처리를 자동으로 완료해 작업 시간을 크게 줄여줍니다. 포토샵도, 편집 경험도 필요 없습니다.",
+    feat_title:"주요 기능", feat_sub:"업로드부터 내보내기까지 완전 자동화",
+    f1_t:"이미지 업로드", f1_d:"드래그 앤 드롭, 다중 선택, 일괄 업로드를 지원합니다.",
+    f2_t:"AI 배경 제거", f2_d:"인물·상품·반려동물·사물을 자동 인식해 원터치로 깔끔하게 누끼를 땁니다.",
+    f3_t:"AI 리터칭", f3_d:"잡티 제거, 배경 정리, 색상 강화, 밝기 조정, 자동 보정.",
+    f4_t:"일괄 처리", f4_d:"수백 장의 이미지를 한 번에 처리해 업무 효율을 높입니다.",
+    f5_t:"다양한 포맷 내보내기", f5_d:"PNG·JPG·WebP 고화질 다운로드를 지원합니다.",
+    f6_t:"클라우드 처리", f6_d:"무거운 프로그램 설치 없이 바로 사용할 수 있습니다.",
+    how_title:"사용 방법", how_sub:"3단계, 학습 비용 제로",
+    s1_t:"업로드", s1_d:"드래그하거나 여러 장을 한 번에 선택하세요.",
+    s2_t:"AI 자동 편집", s2_d:"배경 제거와 이미지 최적화를 자동으로 수행합니다.",
+    s3_t:"다운로드", s3_d:"고화질 그대로 빠르게 내보냅니다.",
+    who_title:"이런 분께 추천합니다",
+    w1_t:"이커머스 판매자", w1_d:"상품 누끼와 상세 이미지를 빠르게 제작합니다.",
+    w2_t:"SNS 운영자", w2_d:"페이스북·인스타그램·스레드 이미지를 신속하게 제작합니다.",
+    w3_t:"디자이너", w3_d:"반복적인 편집 작업 시간을 크게 절약합니다.",
+    w4_t:"포토그래퍼", w4_d:"대량의 사진을 빠르게 일괄 편집합니다.",
+    cmp_title:"기능 비교", cmp_feature:"기능", cmp_trad:"기존 편집 방식",
+    cmp_r1:"AI 배경 제거", cmp_r2:"일괄 편집", cmp_r3:"소요 시간", cmp_r3a:"수 초", cmp_r3b:"수 분~수 시간",
+    cmp_r4:"설치 불필요", cmp_r4b:"설치 필요", cmp_r5:"난이도", cmp_r5a:"★★★★★ 쉬움", cmp_r5b:"★★ 어려움",
+    faq_title:"자주 묻는 질문",
+    q1:"포토샵을 다룰 줄 알아야 하나요?", a1:"전혀 필요 없습니다. AI가 자동으로 편집해 드립니다.",
+    q2:"한 번에 여러 장을 올릴 수 있나요?", a2:"네, 일괄 업로드와 일괄 다운로드를 모두 지원합니다.",
+    q3:"어떤 이미지 형식을 지원하나요?", a3:"JPG, PNG, WebP 등 일반적인 형식을 지원합니다.",
+    q4:"제 이미지는 안전한가요?", a4:"이미지는 처리 목적으로만 사용되며 처리 후 즉시 삭제됩니다. 다른 용도로는 사용하지 않습니다.",
+    cta_title:"지금 AI 사진 편집을 경험해 보세요", cta_sub:"배경 제거·리터칭·보정을 몇 초 만에. 대량 이미지도 한 번에.", cta_btn:"무료로 시작하기",
+    foot_privacy:"개인정보처리방침", foot_terms:"이용약관", foot_contact:"문의하기"
+  },
+
+  "es": { name:"Español",
+    meta_title:"QuickPhoto — Editor de fotos con IA", meta_desc:"Edición con IA, eliminación de fondos por lotes y mejora con un toque",
+    nav_features:"Funciones", nav_how:"Cómo funciona", nav_compare:"Comparativa", nav_faq:"Preguntas",
+    hero_badge:"Motor de edición con IA", hero_title:"Ediciones profesionales en segundos",
+    hero_sub:"Edición con IA, eliminación de fondos por lotes y mejora con un toque. Sin Photoshop.",
+    hero_cta:"Empezar gratis", hero_cta2:"Ver funciones",
+    intro_title:"Sobre QuickPhoto",
+    intro_body:"QuickPhoto es un editor de fotos con IA creado para vendedores de comercio electrónico, diseñadores, creadores de contenido y usuarios generales. Solo tienes que subir una imagen y la IA se encarga automáticamente de eliminar el fondo, retocar, mejorar, recortar y procesar por lotes, ahorrándote horas de trabajo. Sin Photoshop y sin experiencia previa.",
+    feat_title:"Funciones principales", feat_sub:"Totalmente automatizado, de la carga a la exportación",
+    f1_t:"Subida de imágenes", f1_d:"Compatible con arrastrar y soltar, selección múltiple y carga por lotes.",
+    f2_t:"Eliminación de fondo con IA", f2_d:"Detecta personas, productos, mascotas y objetos para recortes limpios con un toque.",
+    f3_t:"Retoque con IA", f3_d:"Elimina imperfecciones, limpia fondos, mejora el color, ajusta el brillo y optimiza automáticamente.",
+    f4_t:"Procesamiento por lotes", f4_d:"Procesa cientos de imágenes a la vez y multiplica tu productividad.",
+    f5_t:"Exportación multiformato", f5_d:"Descargas de alta calidad en PNG, JPG y WebP.",
+    f6_t:"Procesamiento en la nube", f6_d:"Sin instalar programas pesados: ábrelo y empieza a editar.",
+    how_title:"Cómo funciona", how_sub:"Tres pasos, sin curva de aprendizaje",
+    s1_t:"Sube tus fotos", s1_d:"Arrastra o selecciona varias imágenes a la vez.",
+    s2_t:"Edición automática", s2_d:"La IA elimina el fondo y optimiza tus imágenes.",
+    s3_t:"Descarga", s3_d:"Exporta en alta calidad en segundos.",
+    who_title:"¿Para quién es?",
+    w1_t:"Vendedores online", w1_d:"Crea recortes de producto e imágenes de catálogo rápidamente.",
+    w2_t:"Gestores de redes", w2_d:"Produce contenido para Facebook, Instagram y Threads en minutos.",
+    w3_t:"Diseñadores", w3_d:"Ahorra horas en tareas de edición repetitivas.",
+    w4_t:"Fotógrafos", w4_d:"Edita grandes lotes de fotos en pocos minutos.",
+    cmp_title:"Comparativa", cmp_feature:"Función", cmp_trad:"Edición tradicional",
+    cmp_r1:"Eliminación de fondo con IA", cmp_r2:"Edición por lotes", cmp_r3:"Tiempo necesario", cmp_r3a:"Segundos", cmp_r3b:"De minutos a horas",
+    cmp_r4:"Sin instalación", cmp_r4b:"Requiere instalación", cmp_r5:"Dificultad", cmp_r5a:"★★★★★ Fácil", cmp_r5b:"★★ Difícil",
+    faq_title:"Preguntas frecuentes",
+    q1:"¿Necesito saber usar Photoshop?", a1:"En absoluto: la IA se encarga de la edición por ti.",
+    q2:"¿Puedo subir muchas imágenes a la vez?", a2:"Sí, admite carga y descarga por lotes.",
+    q3:"¿Qué formatos son compatibles?", a3:"Formatos habituales como JPG, PNG y WebP.",
+    q4:"¿Están seguras mis imágenes?", a4:"Las imágenes se usan solo para el procesamiento y se eliminan inmediatamente después. Nunca se utilizan para otros fines.",
+    cta_title:"Prueba hoy la edición con IA", cta_sub:"Elimina fondos, retoca y mejora en segundos, a cualquier escala.", cta_btn:"Empezar gratis",
+    foot_privacy:"Política de privacidad", foot_terms:"Términos del servicio", foot_contact:"Contacto"
+  }
+};
+
+const STORAGE_KEY = "qp_lang";
+const HTML_LANG = { "zh-TW":"zh-TW", "zh-CN":"zh-CN", "en":"en", "ja":"ja", "ko":"ko", "es":"es" };
+
+/* 依瀏覽器語言自動判斷 */
+function detectLang(){
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved && LANGS[saved]) return saved;
+
+  const list = navigator.languages || [navigator.language || "en"];
+  for (const raw of list) {
+    const l = raw.toLowerCase();
+    if (l.startsWith("zh")) {
+      // 繁體：tw / hk / mo / hant
+      if (/(tw|hk|mo|hant)/.test(l)) return "zh-TW";
+      return "zh-CN";
+    }
+    if (l.startsWith("ja")) return "ja";
+    if (l.startsWith("ko")) return "ko";
+    if (l.startsWith("es")) return "es";
+    if (l.startsWith("en")) return "en";
+  }
+  return "en";   // 國際 fallback
+}
+
+function applyLang(code){
+  const dict = LANGS[code] || LANGS.en;
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if (dict[key]) el.textContent = dict[key];
+  });
+  document.querySelectorAll("[data-i18n-content]").forEach(el=>{
+    const key = el.getAttribute("data-i18n-content");
+    if (dict[key]) el.setAttribute("content", dict[key]);
+  });
+
+  if (dict.meta_title) document.title = dict.meta_title;
+  document.documentElement.lang = HTML_LANG[code] || "en";
+  document.getElementById("langLabel").textContent = dict.name;
+
+  document.querySelectorAll("#langMenu button").forEach(b=>{
+    b.setAttribute("aria-selected", b.dataset.code === code ? "true" : "false");
+  });
+
+  localStorage.setItem(STORAGE_KEY, code);
+}
+
+/* 建立語言選單 */
+(function initLangMenu(){
+  const menu = document.getElementById("langMenu");
+  Object.entries(LANGS).forEach(([code, val])=>{
+    const b = document.createElement("button");
+    b.dataset.code = code;
+    b.textContent = val.name;
+    b.setAttribute("role","menuitem");
+    b.onclick = ()=>{ applyLang(code); closeMenu(); };
+    menu.appendChild(b);
+  });
+})();
+
+const btn  = document.getElementById("langBtn");
+const menu = document.getElementById("langMenu");
+function closeMenu(){ menu.classList.remove("open"); btn.setAttribute("aria-expanded","false"); }
+btn.addEventListener("click", e=>{
+  e.stopPropagation();
+  const open = menu.classList.toggle("open");
+  btn.setAttribute("aria-expanded", open ? "true" : "false");
+});
+document.addEventListener("click", closeMenu);
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeMenu(); });
+
+/* 啟動 */
+applyLang(detectLang());
+</script>
 </body>
 </html>
